@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  height: calc(100vh - 85px);
+}
+
+.form-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 45%;
+}
+
+.form-wrapper .form {
+  position: absolute;
+  right: -60px;
+  padding: 60px;
+  background-color: white;
+}
+
+.form .fields {
+  margin: 20px 0;
+}
+
+.form .field {
+  width: 375px;
+  height: 35px;
+  margin: 8px 0;
+}
+
+.form .field input {
+  width: 100%;
+  height: 100%;
+  padding: 12pt 0;
+  border-bottom: 2px solid black;
+  background-color: transparent;
+}
+
+.form .field input::placeholder {
+  color: black;
+}
+
+.form button {
+  margin: 20px 0;
+}
+
+.pattern1,
+.pattern2 {
+  position: absolute;
+}
+
+.pattern1 {
+  top: -30px;
+  left: -30px;
+  z-index: -1;
+}
+
+.pattern2 {
+  bottom: -15px;
+  left: -15px;
+  z-index: -1;
+}
+
+.bg-wrapper {
+  width: 55%;
+  height: 100%;
+  background-image: url('../background\ section.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
