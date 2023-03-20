@@ -85,7 +85,7 @@
 
 .cards {
   display: flex;
-  width: 1290px;
+  max-width: 1290px;
   flex-wrap: wrap;
   gap: 30px;
   margin: 20px 0;
