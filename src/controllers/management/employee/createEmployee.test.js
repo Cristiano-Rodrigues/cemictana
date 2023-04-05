@@ -1,7 +1,5 @@
-import { DuplicatedData } from '../../errors/duplicatedData.js'
-import { InvalidEntry } from '../../errors/invalidEntry.js'
-import { ServerError } from '../../errors/serverError.js'
-import { CreateEmployeeController } from './createEmployee.js'
+import { DuplicatedData, InvalidEntry , ServerError } from '../../errors/'
+import { CreateEmployeeController } from './createEmployee'
 
 const ConnectionStub = class {
   close () {}

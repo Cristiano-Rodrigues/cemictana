@@ -1,6 +1,5 @@
-import { InvalidEntry } from '../../errors/invalidEntry.js'
-import { ServerError } from '../../errors/serverError.js'
-import { DeleteEmployeeController } from './deleteEmployee.js'
+import { InvalidEntry, ServerError } from '../../errors/'
+import { DeleteEmployeeController } from './deleteEmployee'
 
 const ConnectionStub = class {
   close () {}

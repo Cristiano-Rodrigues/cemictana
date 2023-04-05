@@ -1,6 +1,4 @@
-import { DuplicatedData } from '../../errors/duplicatedData'
-import { InvalidEntry } from '../../errors/invalidEntry'
-import { ServerError } from '../../errors/serverError'
+import { DuplicatedData, InvalidEntry, ServerError } from '../../errors/'
 
 export class CreateEmployeeController {
   constructor (

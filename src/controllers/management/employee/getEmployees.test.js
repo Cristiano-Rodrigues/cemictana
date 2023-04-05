@@ -1,5 +1,5 @@
-import { ServerError } from '../../errors/serverError.js'
-import { GetEmployeesController } from './getEmployees.js'
+import { ServerError } from '../../errors/'
+import { GetEmployeesController } from './getEmployees'
 
 const ConnectionStub = class {
   close () {}
