@@ -1,5 +1,25 @@
 {
   "dependencies": {
     "mysql": "^2.18.1"
-  }
+  },
+  "name": "cemictana-frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cristiano-Rodrigues/cemictana.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cristiano-Rodrigues/cemictana/issues"
+  },
+  "homepage": "https://github.com/Cristiano-Rodrigues/cemictana#readme",
+  "description": ""
 }
