@@ -20,8 +20,7 @@ export class CreateEmployeeController {
       address
     } = req.body
 
-    const anyNullValue = [name, identification, post].some(field =>
-      field == null)
+    const anyNullValue = [name, identification, post].some(field => field == null)
 
     if ( anyNullValue ) {
       return {
