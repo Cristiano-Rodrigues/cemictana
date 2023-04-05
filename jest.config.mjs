@@ -2,7 +2,7 @@ export default {
   clearMocks: true,
 
   collectCoverageFrom: [
-    '<rootDir>/controllers/**/*.js'
+    '<rootDir>/controllers/**/*.test.js'
   ],
 
   coverageDirectory: 'coverage',
@@ -11,4 +11,7 @@ export default {
 
   rootDir: './src',
 
+  transform: {
+    "^.+\\.js?$": "babel-jest"
+  }
 };
