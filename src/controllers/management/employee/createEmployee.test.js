@@ -1,5 +1,6 @@
 import { DuplicatedData } from '../../errors/duplicatedData.js'
 import { InvalidEntry } from '../../errors/invalidEntry.js'
+import { ServerError } from '../../errors/serverError.js'
 import { CreateEmployeeController } from './createEmployee.js'
 
 const ConnectionStub = class {
@@ -67,6 +68,30 @@ describe('CreateEmployeeController', () => {
     expect(result).toEqual({
       code: 201,
       success: true
+    })
+  })
+
+  test('Should return an error object if any internal server error', async () => {
+    const employeeRepositoryStub = class {
+      getByIdentification (_) {
+        throw new Error('any_error')
+      }
+    }
+    const createEmployeeController = new CreateEmployeeController(
+      ConnectionStub,
+      employeeRepositoryStub
+    )
+
+    const result = await createEmployeeController.handle({
+      body: {
+        name: 'any_name',
+        identification: 'any_identification',
+        post: 'any_post'
+      }
+    })
+    expect(result).toEqual({
+      code: 500,
+      error: new ServerError()
     })
   })
 })
