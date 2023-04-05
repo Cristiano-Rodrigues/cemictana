@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "test:watch": "npm run test --watch"
+    "test:watch": "npm run test --watch",
+    "test:no-cache": "npm run test --clearCache"
   },
   "repository": {
     "type": "git",
