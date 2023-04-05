@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import path from 'path'
 
 dotenv.config()
 
@@ -7,6 +8,8 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
+app.use(express.static(path.join(process.cwd(), '/public')))
 
 app.use((_, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
