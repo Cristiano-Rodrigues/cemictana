@@ -4,14 +4,12 @@
   color: white;
   padding: 80px 110px;
   background-color: var(--secondary75);
-  background-image: url('../background\ detail.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 93% top;
 }
 
 .banner h1 {
-  max-width: 590px;
   margin-bottom: 10px;
 }
 
