@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "test:watch": "npm run test --watch",
-    "test:no-cache": "npm run test --clearCache"
+    "test:no-cache": "npm run test --clearCache",
+    "start": "node --experimental-specifier-resolution=node ./server.js"
   },
   "repository": {
     "type": "git",
