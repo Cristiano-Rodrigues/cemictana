@@ -42,7 +42,7 @@ export class DefunctRepository {
   }) {
     const sql = {
       query: 'UPDATE defunct SET name=?, identification=?, bornDate=?, \
-        \ deathDate=?, funeralDate=?, deathCause=? LIMIT 1',
+        \ deathDate=?, funeralDate=?, deathCause=? WHERE id=? LIMIT 1',
       values: [name, identification, bornDate, deathDate, funeralDate, deathCause, id]
     }
     await this.query(sql.query, sql.values)

@@ -42,7 +42,7 @@ export class ResponsibleRepository {
   }) {
     const sql = {
       query: 'UPDATE responsible SET name=?, identification=?, bornDate=?, \
-        \ address=? LIMIT 1',
+        \ address=? WHERE id=? LIMIT 1',
       values: [name, identification, bornDate, address]
     }
     await this.query(sql.query, sql.values)

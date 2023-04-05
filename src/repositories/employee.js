@@ -42,7 +42,7 @@ export class EmployeeRepository {
   }) {
     const sql = {
       query: 'UPDATE employee SET name=?, identification=?, post=?, \
-        \ bornDate=?, address=? LIMIT 1',
+        \ bornDate=?, address=? WHERE id=? LIMIT 1',
       values: [name, identification, post, bornDate, address, id]
     }
     await this.query(sql.query, sql.values)
