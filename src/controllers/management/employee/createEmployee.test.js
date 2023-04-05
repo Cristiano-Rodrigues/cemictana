@@ -55,22 +55,6 @@ describe('CreateEmployeeController', () => {
     expect((result.error instanceof DuplicatedData)).toBe(true)
   })
 
-  test('Should return a success object if no error', async () => {
-    const result = await createEmployeeController.handle({
-      body: {
-        name: 'any_name',
-        identification: 'any_identification',
-        post: 'any_post',
-        bornDate: 'any_date',
-        address: 'any_address'
-      }
-    })
-    expect(result).toEqual({
-      code: 201,
-      success: true
-    })
-  })
-
   test('Should return an error object if any internal server error', async () => {
     const employeeRepositoryStub = class {
       getByIdentification (_) {
@@ -92,6 +76,22 @@ describe('CreateEmployeeController', () => {
     expect(result).toEqual({
       code: 500,
       error: new ServerError()
+    })
+  })
+
+  test('Should return a success object if no error', async () => {
+    const result = await createEmployeeController.handle({
+      body: {
+        name: 'any_name',
+        identification: 'any_identification',
+        post: 'any_post',
+        bornDate: 'any_date',
+        address: 'any_address'
+      }
+    })
+    expect(result).toEqual({
+      code: 201,
+      success: true
     })
   })
 })
