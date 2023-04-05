@@ -35,7 +35,7 @@ export class CreateEmployeeController {
       if ( alreadyExists ) {
         return {
           code: 400,
-          error: new DuplicatedData(identification)
+          error: new DuplicatedData('identification')
         }
       }
 
