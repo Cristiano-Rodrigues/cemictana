@@ -33,7 +33,8 @@ function registerRoute(route) {
 Promise.all([
   'main',
   'employee',
-  'unit'
+  'responsible',
+  'unit',
 ]
 .map(load))
 .then(result => result.forEach(registerRoute))
