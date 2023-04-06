@@ -30,7 +30,7 @@ describe('CreateEmployeeController', () => {
   })
 
   test('Should return an error object if employee already exists', async () => {
-    const employeeRepositoryStub = class {
+    const EmployeeRepositoryStub = class {
       getByIdentification (identification) {
         return {
           identification
@@ -39,7 +39,7 @@ describe('CreateEmployeeController', () => {
     }
     const createEmployeeController = new CreateEmployeeController(
       ConnectionStub,
-      employeeRepositoryStub
+      EmployeeRepositoryStub
     )
 
     const result = await createEmployeeController.handle({
@@ -54,14 +54,14 @@ describe('CreateEmployeeController', () => {
   })
 
   test('Should return an error object if any internal server error', async () => {
-    const employeeRepositoryStub = class {
+    const EmployeeRepositoryStub = class {
       getByIdentification (_) {
         throw new Error('any_error')
       }
     }
     const createEmployeeController = new CreateEmployeeController(
       ConnectionStub,
-      employeeRepositoryStub
+      EmployeeRepositoryStub
     )
 
     const result = await createEmployeeController.handle({

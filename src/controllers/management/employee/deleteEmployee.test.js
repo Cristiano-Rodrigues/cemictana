@@ -23,14 +23,14 @@ describe('DeleteEmployeeController', () => {
   })
 
   test('Should return an error object if any internal server error', async () => {
-    const employeeRepositoryStub = class {
+    const EmployeeRepositoryStub = class {
       get () {
         throw new Error('any_error')
       }
     }
     const deleteEmployeeController = new DeleteEmployeeController(
       ConnectionStub,
-      employeeRepositoryStub
+      EmployeeRepositoryStub
     )
 
   const result = await deleteEmployeeController.handle({

@@ -17,14 +17,14 @@ const getEmployeesController = new GetEmployeesController(
 
 describe('GetEmployeesController', () => {
   test('Should return an error object if any internal server error', async () => {
-    const employeeRepositoryStub = class {
+    const EmployeeRepositoryStub = class {
       get () {
         throw new Error('any_error')
       }
     }
     const getEmployeesController = new GetEmployeesController(
       ConnectionStub,
-      employeeRepositoryStub
+      EmployeeRepositoryStub
     )
 
     const result = await getEmployeesController.handle()

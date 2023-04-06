@@ -34,7 +34,7 @@ describe('UpdateEmployeeController', () => {
   })
 
   test('Should return an error object if employee identification is already used by other user', async () => {
-    const employeeRepositoryStub = class {
+    const EmployeeRepositoryStub = class {
       getByIdentification (identification) {
         return {
           id: 2,
@@ -44,7 +44,7 @@ describe('UpdateEmployeeController', () => {
     }
     const updateEmployeeController = new UpdateEmployeeController(
       ConnectionStub,
-      employeeRepositoryStub
+      EmployeeRepositoryStub
     )
 
     const result = await updateEmployeeController.handle({
@@ -60,14 +60,14 @@ describe('UpdateEmployeeController', () => {
   })
 
   test('Should return an error object if any internal server error', async () => {
-    const employeeRepositoryStub = class {
+    const EmployeeRepositoryStub = class {
       getByIdentification (_) {
         throw new Error('any_error')
       }
     }
     const updateEmployeeController = new UpdateEmployeeController(
       ConnectionStub,
-      employeeRepositoryStub
+      EmployeeRepositoryStub
     )
 
     const result = await updateEmployeeController.handle({
