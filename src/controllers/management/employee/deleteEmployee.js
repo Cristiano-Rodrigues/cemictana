@@ -12,15 +12,15 @@ export class DeleteEmployeeController {
   async handle (req) {
     const id = req.body?.id
 
+    if ( !id ) {
+      return {
+        code: 400,
+        error: new InvalidEntry('id')
+      }
+    }
+
     try {
       await this.employeeRepository.delete(id)
-
-      if ( !id ) {
-        return {
-          code: 400,
-          error: new InvalidEntry('id')
-        }
-      }
 
       this.conn.close()
     } catch (error) {

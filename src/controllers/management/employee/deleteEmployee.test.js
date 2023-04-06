@@ -24,7 +24,7 @@ describe('DeleteEmployeeController', () => {
 
   test('Should return an error object if any internal server error', async () => {
     const EmployeeRepositoryStub = class {
-      get () {
+      delete () {
         throw new Error('any_error')
       }
     }
