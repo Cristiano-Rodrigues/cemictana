@@ -33,11 +33,12 @@ describe('DeleteResponsibleController', () => {
       ResponsibleRepositoryStub
     )
 
-  const result = await deleteResponsibleController.handle({
-    params: {
-      id: 1
-    }
-  })
+    const result = await deleteResponsibleController.handle({
+      params: {
+        id: 1
+      }
+    })
+    
     expect(result).toEqual({
       code: 500,
       error: new ServerError()

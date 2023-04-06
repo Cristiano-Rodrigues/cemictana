@@ -33,11 +33,12 @@ describe('DeleteUnitController', () => {
       UnitRepositoryStub
     )
 
-  const result = await deleteUnitController.handle({
-    params: {
-      id: 1
-    }
-  })
+    const result = await deleteUnitController.handle({
+      params: {
+        id: 1
+      }
+    })
+    
     expect(result).toEqual({
       code: 500,
       error: new ServerError()

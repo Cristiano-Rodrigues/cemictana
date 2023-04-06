@@ -33,11 +33,12 @@ describe('DeleteEmployeeController', () => {
       EmployeeRepositoryStub
     )
 
-  const result = await deleteEmployeeController.handle({
-    params: {
-      id: 1
-    }
-  })
+    const result = await deleteEmployeeController.handle({
+      params: {
+        id: 1
+      }
+    })
+    
     expect(result).toEqual({
       code: 500,
       error: new ServerError()
