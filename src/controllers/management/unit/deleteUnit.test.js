@@ -34,7 +34,7 @@ describe('DeleteUnitController', () => {
     )
 
   const result = await deleteUnitController.handle({
-    body: {
+    params: {
       id: 1
     }
   })
@@ -46,7 +46,7 @@ describe('DeleteUnitController', () => {
 
   test('Should return a success object if no error', async () => {
     const result = await deleteUnitController.handle({
-      body: {
+      params: {
         id: 1
       }
     })

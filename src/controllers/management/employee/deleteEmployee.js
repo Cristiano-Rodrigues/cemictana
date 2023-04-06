@@ -10,7 +10,7 @@ export class DeleteEmployeeController {
   }
 
   async handle (req) {
-    const id = req.body?.id
+    const id = req.params?.id
 
     if ( !id ) {
       return {

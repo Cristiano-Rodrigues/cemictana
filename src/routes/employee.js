@@ -21,7 +21,7 @@ export default router => {
   router.post('/employee', adaptController(createEmployeeController))
   router.get('/employee', adaptController(getEmployeesController))
   router.put('/employee', adaptController(updateEmployeeController))
-  router.delete('/employee', adaptController(deleteEmployeeController))
+  router.delete('/employee/:id', adaptController(deleteEmployeeController))
 
   return router
 }

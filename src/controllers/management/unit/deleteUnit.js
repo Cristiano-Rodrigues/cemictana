@@ -10,7 +10,7 @@ export class DeleteUnitController {
   }
 
   async handle (req) {
-    const id = req.body?.id
+    const id = req.params?.id
 
     if ( !id ) {
       return {
@@ -18,7 +18,7 @@ export class DeleteUnitController {
         error: new InvalidEntry('id')
       }
     }
-    
+
     try {
       await this.unitRepository.delete(id)
 
