@@ -34,6 +34,7 @@ Promise.all([
   'main',
   'employee',
   'responsible',
+  'defunct',
   'unit',
 ]
 .map(load))
