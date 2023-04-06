@@ -5,8 +5,8 @@ export class UpdateEmployeeController {
     Connection,
     EmployeeRepository
   ) {
-    this.conn = new Connection()
-    this.employeeRepository = new EmployeeRepository(this.conn)
+    this.Connection = Connection
+    this.EmployeeRepository = EmployeeRepository
   }
 
   async handle (req) {
@@ -29,6 +29,9 @@ export class UpdateEmployeeController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.employeeRepository = new this.EmployeeRepository(this.conn)
+      
       const employee = await this.employeeRepository.getByIdentification(identification)
       const alreadyExists = !!employee && employee.id != id
 

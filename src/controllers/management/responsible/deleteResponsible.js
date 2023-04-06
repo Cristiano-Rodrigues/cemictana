@@ -5,8 +5,8 @@ export class DeleteResponsibleController {
     Connection,
     ResponsibleRepository
   ) {
-    this.conn = new Connection()
-    this.responsibleRepository = new ResponsibleRepository(this.conn)
+    this.Connection = Connection
+    this.ResponsibleRepository = ResponsibleRepository
   }
 
   async handle (req) {
@@ -20,6 +20,9 @@ export class DeleteResponsibleController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.responsibleRepository = new this.ResponsibleRepository(this.conn)
+      
       await this.responsibleRepository.delete(id)
 
       this.conn.close()

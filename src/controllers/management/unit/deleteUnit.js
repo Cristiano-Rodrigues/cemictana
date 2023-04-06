@@ -5,8 +5,8 @@ export class DeleteUnitController {
     Connection,
     UnitRepository
   ) {
-    this.conn = new Connection()
-    this.unitRepository = new UnitRepository(this.conn)
+    this.Connection = Connection
+    this.UnitRepository = UnitRepository
   }
 
   async handle (req) {
@@ -20,6 +20,9 @@ export class DeleteUnitController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.unitRepository = new this.UnitRepository(this.conn)
+      
       await this.unitRepository.delete(id)
 
       this.conn.close()

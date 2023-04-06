@@ -5,8 +5,8 @@ export class CreateResponsibleController {
     Connection,
     ResponsibleRepository
   ) {
-    this.conn = new Connection()
-    this.responsibleRepository = new ResponsibleRepository(this.conn)
+    this.Connection = Connection
+    this.ResponsibleRepository = ResponsibleRepository
   }
 
   async handle (req) {
@@ -37,6 +37,9 @@ export class CreateResponsibleController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.responsibleRepository = new this.ResponsibleRepository(this.conn)
+
       const alreadyExists = await this.responsibleRepository.getByIdentification(identification)
 
       if ( alreadyExists ) {

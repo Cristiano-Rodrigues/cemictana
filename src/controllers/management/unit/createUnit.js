@@ -5,8 +5,8 @@ export class CreateUnitController {
     Connection,
     UnitRepository
   ) {
-    this.conn = new Connection()
-    this.unitRepository = new UnitRepository(this.conn)
+    this.Connection = Connection
+    this.UnitRepository = UnitRepository
   }
 
   async handle (req) {
@@ -22,6 +22,9 @@ export class CreateUnitController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.unitRepository = new this.UnitRepository(this.conn)
+
       const alreadyExists = await this.unitRepository.getByLocation(location)
 
       if ( alreadyExists ) {

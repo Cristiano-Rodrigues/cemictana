@@ -5,8 +5,8 @@ export class DeleteEmployeeController {
     Connection,
     EmployeeRepository
   ) {
-    this.conn = new Connection()
-    this.employeeRepository = new EmployeeRepository(this.conn)
+    this.Connection = Connection
+    this.EmployeeRepository = EmployeeRepository
   }
 
   async handle (req) {
@@ -20,6 +20,9 @@ export class DeleteEmployeeController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.employeeRepository = new this.EmployeeRepository(this.conn)
+      
       await this.employeeRepository.delete(id)
 
       this.conn.close()

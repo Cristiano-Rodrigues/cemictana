@@ -5,12 +5,15 @@ export class GetUnitsController {
     Connection,
     UnitRepository
   ) {
-    this.conn = new Connection()
-    this.unitRepository = new UnitRepository(this.conn)
+    this.Connection = Connection
+    this.UnitRepository = UnitRepository
   }
 
   async handle (_) {
     try {
+      this.conn = new this.Connection()
+      this.unitRepository = new this.UnitRepository(this.conn)
+      
       const result = await this.unitRepository.get()
 
       this.conn.close()

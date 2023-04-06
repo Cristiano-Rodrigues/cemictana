@@ -5,8 +5,8 @@ export class UpdateUnitController {
     Connection,
     UnitRepository
   ) {
-    this.conn = new Connection()
-    this.unitRepository = new UnitRepository(this.conn)
+    this.Connection = Connection
+    this.UnitRepository = UnitRepository
   }
 
   async handle (req) {
@@ -27,6 +27,9 @@ export class UpdateUnitController {
     }
 
     try {
+      this.conn = new this.Connection()
+      this.unitRepository = new this.UnitRepository(this.conn)
+      
       const unit = await this.unitRepository.getByLocation(location)
       const alreadyExists = !!unit && unit.id != id
 

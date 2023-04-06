@@ -5,12 +5,15 @@ export class GetEmployeesController {
     Connection,
     EmployeeRepository
   ) {
-    this.conn = new Connection()
-    this.employeeRepository = new EmployeeRepository(this.conn)
+    this.Connection = Connection
+    this.EmployeeRepository = EmployeeRepository
   }
 
   async handle (_) {
     try {
+      this.conn = new this.Connection()
+      this.employeeRepository = new this.EmployeeRepository(this.conn)
+      
       const result = await this.employeeRepository.get()
 
       this.conn.close()
