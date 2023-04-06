@@ -24,7 +24,7 @@ export class UpdateEmployeeController {
     if ( anyNullValue ) {
       return {
         code: 400,
-        error: new InvalidEntry('name, identification or post')
+        error: new InvalidEntry('id, name, identification or post')
       }
     }
 
