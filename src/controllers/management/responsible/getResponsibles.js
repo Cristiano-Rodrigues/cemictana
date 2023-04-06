@@ -1,4 +1,4 @@
-import { ServerError } from '../../errors/'
+import { ServerError } from '../../errors'
 
 export class GetResponsiblesController {
   constructor (

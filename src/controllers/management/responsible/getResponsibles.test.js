@@ -1,5 +1,5 @@
-import { ServerError } from '../../errors/'
-import { GetResponsiblesController } from './getResponsible'
+import { ServerError } from '../../errors'
+import { GetResponsiblesController } from './getResponsibles'
 
 const ConnectionStub = class {
   close () {}
