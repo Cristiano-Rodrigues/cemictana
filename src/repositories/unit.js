@@ -27,6 +27,14 @@ export class UnitRepository {
     return (await this.query(sql.query, sql.values))[0]
   }
 
+  async getByLocation (location) {
+    const sql = {
+      query: 'SELECT * FROM unit WHERE location=? LIMIT 1000',
+      values: [location]
+    }
+    return (await this.query(sql.query, sql.values))[0]
+  }
+
   async update (id, { type, location, state }) {
     const sql = {
       query: 'UPDATE unit SET type=?, location=?, state=? WHERE id=? \
