@@ -37,6 +37,14 @@ export class DefunctRepository {
     return (await this.query(sql.query, sql.values))[0]
   }
 
+  async getByIdentification (identification) {
+    const sql = {
+      query: 'SELECT * FROM defunct WHERE identification=? LIMIT 1',
+      values: [identification]
+    }
+    return (await this.query(sql.query, sql.values))[0]
+  }
+
   async update (id, {
     name, identification, bornDate, deathDate, funeralDate, deathCause
   }) {
