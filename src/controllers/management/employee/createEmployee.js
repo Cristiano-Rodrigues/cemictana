@@ -27,6 +27,16 @@ export class CreateEmployeeController {
       }
     }
 
+    if ( bornDate ) {
+      const date = new Date(bornDate)
+      if (Date.now() < date.getTime()) {
+        return {
+          code: 400,
+          error: new InvalidEntry('bornDate')
+        }
+      }
+    }
+
     try {
       const conn = new this.Connection()
       const employeeRepository = new this.EmployeeRepository(conn)
