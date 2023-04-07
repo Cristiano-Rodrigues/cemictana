@@ -36,6 +36,7 @@ Promise.all([
   'responsible',
   'defunct',
   'unit',
+  'user'
 ]
 .map(load))
 .then(result => result.forEach(registerRoute))

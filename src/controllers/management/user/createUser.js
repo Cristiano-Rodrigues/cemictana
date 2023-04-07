@@ -39,7 +39,7 @@ export class CreateUserController {
 
     try {
       const conn = new this.Connection()
-      const userRepository = new this.UserRepository(this.conn)
+      const userRepository = new this.UserRepository(conn)
 
       const alreadyExists = await userRepository.getByEmail(email)
 
@@ -74,6 +74,7 @@ export class CreateUserController {
         user: filterUser(user)
       }
     } catch (error) {
+      console.log(error)
       return {
         code: 500,
         error: new ServerError()

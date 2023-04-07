@@ -31,7 +31,7 @@ export class UpdateUserController {
 
     try {
       const conn = new this.Connection()
-      const userRepository = new this.UserRepository(this.conn)
+      const userRepository = new this.UserRepository(conn)
 
       const user = await userRepository.getById(id)
 
