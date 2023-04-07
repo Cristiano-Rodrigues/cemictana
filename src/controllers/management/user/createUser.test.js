@@ -119,18 +119,6 @@ describe('CreateUserController', () => {
     })
   })
 
-  test('Should return a user with hashed password if no error', async () => {
-    const result = await createUserController.handle({
-      body: {
-        name: 'any_name',
-        email: 'email@server.com',
-        password: 'any_password',
-        permission: 'any_permission'
-      }
-    })
-    expect(result.user.password).toBe('hashed_password')
-  })
-
   test('Should return a success object if no error', async () => {
     const result = await createUserController.handle({
       body: {
@@ -140,7 +128,14 @@ describe('CreateUserController', () => {
         permission: 'any_permission'
       }
     })
-    expect(result.code).toBe(201)
-    expect(result.success).toBe(true)
+    expect(result).toEqual({
+      code: 201,
+      success: true,
+      user: {
+        name: 'any_name',
+        email: 'email@server.com',
+        permission: 'any_permission'
+      }
+    })
   })
 })

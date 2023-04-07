@@ -3,7 +3,7 @@ import { generateRandomCode, sendActivationCode } from '../../helpers/'
 
 const filterUser = user => ({
   name: user.name,
-  emaiL: user.email,
+  email: user.email,
   permission: user.permission
 })
 
@@ -64,14 +64,14 @@ export class CreateUserController {
         state: 0,
         code
       }
-      await userRepository.create(filterUser(user))
+      await userRepository.create(user)
 
       conn.close()
 
       return {
         code: 201,
         success: true,
-        user
+        user: filterUser(user)
       }
     } catch (error) {
       return {
