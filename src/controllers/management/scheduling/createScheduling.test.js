@@ -67,7 +67,7 @@ describe('CreateSchedulingController', () => {
     })
   })
 
-  test('Should return an error object if invalid id is given for responsible, defunct or scheduling', async () => {
+  test('Should return an error object if invalid id is given for responsible, defunct or unit', async () => {
     const ResponsibleRepositoryStub = class {
       getById (_) {
         return null
