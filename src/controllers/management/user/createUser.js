@@ -74,7 +74,6 @@ export class CreateUserController {
         user: filterUser(user)
       }
     } catch (error) {
-      console.log(error)
       return {
         code: 500,
         error: new ServerError()
