@@ -20,12 +20,12 @@ export class DeleteEmployeeController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.employeeRepository = new this.EmployeeRepository(this.conn)
+      const conn = new this.Connection()
+      const employeeRepository = new this.EmployeeRepository(conn)
       
-      await this.employeeRepository.delete(id)
+      await employeeRepository.delete(id)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

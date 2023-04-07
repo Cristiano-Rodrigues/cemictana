@@ -20,12 +20,12 @@ export class DeleteResponsibleController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.responsibleRepository = new this.ResponsibleRepository(this.conn)
+      const conn = new this.Connection()
+      const responsibleRepository = new this.ResponsibleRepository(conn)
       
-      await this.responsibleRepository.delete(id)
+      await responsibleRepository.delete(id)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

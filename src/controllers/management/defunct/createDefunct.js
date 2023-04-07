@@ -40,10 +40,10 @@ export class CreateDefunctController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.defunctRepository = new this.DefunctRepository(this.conn)
+      const conn = new this.Connection()
+      const defunctRepository = new this.DefunctRepository(conn)
 
-      const alreadyExists = await this.defunctRepository.getByIdentification(identification)
+      const alreadyExists = await defunctRepository.getByIdentification(identification)
 
       if ( alreadyExists ) {
         return {
@@ -52,7 +52,7 @@ export class CreateDefunctController {
         }
       }
 
-      await this.defunctRepository.create({
+      await defunctRepository.create({
         name,
         identification,
         bornDate,
@@ -60,7 +60,7 @@ export class CreateDefunctController {
         deathCause
       })
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

@@ -11,12 +11,12 @@ export class GetDefunctsController {
 
   async handle (_) {
     try {
-      this.conn = new this.Connection()
-      this.defunctRepository = new this.DefunctRepository(this.conn)
+      const conn = new this.Connection()
+      const defunctRepository = new this.DefunctRepository(conn)
       
-      const result = await this.defunctRepository.get()
+      const result = await defunctRepository.get()
 
-      this.conn.close()
+      conn.close()
 
       return {
         code: 200,

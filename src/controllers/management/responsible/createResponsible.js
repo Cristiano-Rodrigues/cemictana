@@ -37,10 +37,10 @@ export class CreateResponsibleController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.responsibleRepository = new this.ResponsibleRepository(this.conn)
+      const conn = new this.Connection()
+      const responsibleRepository = new this.ResponsibleRepository(conn)
 
-      const alreadyExists = await this.responsibleRepository.getByIdentification(identification)
+      const alreadyExists = await responsibleRepository.getByIdentification(identification)
 
       if ( alreadyExists ) {
         return {
@@ -49,14 +49,14 @@ export class CreateResponsibleController {
         }
       }
 
-      await this.responsibleRepository.create({
+      await responsibleRepository.create({
         name,
         identification,
         bornDate,
         address
       })
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

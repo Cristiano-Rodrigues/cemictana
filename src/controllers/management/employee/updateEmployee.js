@@ -29,10 +29,10 @@ export class UpdateEmployeeController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.employeeRepository = new this.EmployeeRepository(this.conn)
+      const conn = new this.Connection()
+      const employeeRepository = new this.EmployeeRepository(conn)
       
-      const employee = await this.employeeRepository.getByIdentification(identification)
+      const employee = await employeeRepository.getByIdentification(identification)
       const alreadyExists = !!employee && employee.id != id
 
       if ( alreadyExists ) {
@@ -50,9 +50,9 @@ export class UpdateEmployeeController {
         address
       })
 
-      await this.employeeRepository.update(id, newEmployee)
+      await employeeRepository.update(id, newEmployee)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

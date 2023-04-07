@@ -41,10 +41,10 @@ export class UpdateDefunctController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.defunctRepository = new this.DefunctRepository(this.conn)
+      const conn = new this.Connection()
+      const defunctRepository = new this.DefunctRepository(conn)
       
-      const defunct = await this.defunctRepository.getByIdentification(identification)
+      const defunct = await defunctRepository.getByIdentification(identification)
       const alreadyExists = !!defunct && defunct.id != id
 
       if ( alreadyExists ) {
@@ -62,9 +62,9 @@ export class UpdateDefunctController {
         deathCause
       })
 
-      await this.defunctRepository.update(id, newDefunct)
+      await defunctRepository.update(id, newDefunct)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

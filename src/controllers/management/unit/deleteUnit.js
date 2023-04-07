@@ -20,12 +20,12 @@ export class DeleteUnitController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.unitRepository = new this.UnitRepository(this.conn)
+      const conn = new this.Connection()
+      const unitRepository = new this.UnitRepository(conn)
       
-      await this.unitRepository.delete(id)
+      await unitRepository.delete(id)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

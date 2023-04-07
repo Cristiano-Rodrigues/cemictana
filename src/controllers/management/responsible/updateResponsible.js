@@ -38,10 +38,10 @@ export class UpdateResponsibleController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.responsibleRepository = new this.ResponsibleRepository(this.conn)
+      const conn = new this.Connection()
+      const responsibleRepository = new this.ResponsibleRepository(conn)
       
-      const responsible = await this.responsibleRepository.getByIdentification(identification)
+      const responsible = await responsibleRepository.getByIdentification(identification)
       const alreadyExists = !!responsible && responsible.id != id
 
       if ( alreadyExists ) {
@@ -58,9 +58,9 @@ export class UpdateResponsibleController {
         address
       })
 
-      await this.responsibleRepository.update(id, newResponsible)
+      await responsibleRepository.update(id, newResponsible)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

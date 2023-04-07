@@ -11,12 +11,12 @@ export class GetUnitsController {
 
   async handle (_) {
     try {
-      this.conn = new this.Connection()
-      this.unitRepository = new this.UnitRepository(this.conn)
+      const conn = new this.Connection()
+      const unitRepository = new this.UnitRepository(conn)
       
-      const result = await this.unitRepository.get()
+      const result = await unitRepository.get()
 
-      this.conn.close()
+      conn.close()
 
       return {
         code: 200,

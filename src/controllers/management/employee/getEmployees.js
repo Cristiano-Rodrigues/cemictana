@@ -11,12 +11,12 @@ export class GetEmployeesController {
 
   async handle (_) {
     try {
-      this.conn = new this.Connection()
-      this.employeeRepository = new this.EmployeeRepository(this.conn)
+      const conn = new this.Connection()
+      const employeeRepository = new this.EmployeeRepository(conn)
       
-      const result = await this.employeeRepository.get()
+      const result = await employeeRepository.get()
 
-      this.conn.close()
+      conn.close()
 
       return {
         code: 200,

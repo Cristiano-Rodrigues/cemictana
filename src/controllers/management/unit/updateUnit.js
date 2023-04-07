@@ -27,10 +27,10 @@ export class UpdateUnitController {
     }
 
     try {
-      this.conn = new this.Connection()
-      this.unitRepository = new this.UnitRepository(this.conn)
+      const conn = new this.Connection()
+      const unitRepository = new this.UnitRepository(conn)
       
-      const unit = await this.unitRepository.getByLocation(location)
+      const unit = await unitRepository.getByLocation(location)
       const alreadyExists = !!unit && unit.id != id
 
       if ( alreadyExists ) {
@@ -46,9 +46,9 @@ export class UpdateUnitController {
         state
       })
 
-      await this.unitRepository.update(id, newUnit)
+      await unitRepository.update(id, newUnit)
 
-      this.conn.close()
+      conn.close()
     } catch (error) {
       return {
         code: 500,

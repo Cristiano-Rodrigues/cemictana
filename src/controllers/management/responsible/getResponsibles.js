@@ -11,12 +11,12 @@ export class GetResponsiblesController {
 
   async handle (_) {
     try {
-      this.conn = new this.Connection()
-      this.responsibleRepository = new this.ResponsibleRepository(this.conn)
+      const conn = new this.Connection()
+      const responsibleRepository = new this.ResponsibleRepository(conn)
       
-      const result = await this.responsibleRepository.get()
+      const result = await responsibleRepository.get()
 
-      this.conn.close()
+      conn.close()
 
       return {
         code: 200,
