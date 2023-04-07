@@ -4,7 +4,14 @@ import {
   UpdateSchedulingController,
   DeleteSchedulingController
 } from '../controllers/management/scheduling'
-import { Connection, DefunctRepository, EmployeeRepository, ResponsibleRepository, SchedulingRepository, UnitRepository } from '../repositories'
+import {
+  Connection,
+  DefunctRepository,
+  EmployeeRepository,
+  ResponsibleRepository,
+  SchedulingRepository,
+  UnitRepository
+} from '../repositories'
 import { adaptController } from './adapters'
 
 export default router => {
