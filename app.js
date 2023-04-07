@@ -35,6 +35,7 @@ Promise.all([
   'employee',
   'responsible',
   'defunct',
+  'scheduling',
   'unit',
   'user'
 ]
