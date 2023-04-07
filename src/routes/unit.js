@@ -5,7 +5,7 @@ import {
   DeleteUnitController
 } from '../controllers/management/unit/'
 import { Connection, UnitRepository } from '../repositories'
-import { adaptController } from './adapters/express-controller-adapter'
+import { adaptController } from './adapters'
 
 export default router => {
   const params = [

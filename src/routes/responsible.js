@@ -5,7 +5,7 @@ import {
   DeleteResponsibleController
 } from '../controllers/management/responsible'
 import { Connection, ResponsibleRepository } from '../repositories'
-import { adaptController } from './adapters/express-controller-adapter'
+import { adaptController } from './adapters'
 
 export default router => {
   const params = [

@@ -1,4 +1,4 @@
-import { adaptController } from './adapters/express-controller-adapter'
+import { adaptController } from './adapters'
 
 export default router => {
   router.get('/', adaptController({

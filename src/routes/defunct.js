@@ -5,7 +5,7 @@ import {
   DeleteDefunctController
 } from '../controllers/management/defunct'
 import { Connection, DefunctRepository } from '../repositories'
-import { adaptController } from './adapters/express-controller-adapter'
+import { adaptController } from './adapters'
 
 export default router => {
   const params = [

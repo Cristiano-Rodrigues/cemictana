@@ -5,7 +5,7 @@ import {
   DeleteEmployeeController
 } from '../controllers/management/employee'
 import { Connection, EmployeeRepository } from '../repositories'
-import { adaptController } from './adapters/express-controller-adapter'
+import { adaptController } from './adapters'
 
 export default router => {
   const params = [
