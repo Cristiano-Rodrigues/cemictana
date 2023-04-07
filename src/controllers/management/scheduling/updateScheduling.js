@@ -88,7 +88,7 @@ export class UpdateSchedulingController {
     }
 
     return {
-      code: 201,
+      code: 200,
       success: true
     }
   }

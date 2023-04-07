@@ -153,7 +153,7 @@ describe('UpdateSchedulingController', () => {
       }
     })
     expect(result).toEqual({
-      code: 201,
+      code: 200,
       success: true
     })
   })
