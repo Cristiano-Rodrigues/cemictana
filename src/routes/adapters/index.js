@@ -1,3 +1,5 @@
 export * from './bcrypt-adapter'
 export * from './express-controller-adapter'
+export * from './express-middleware-adapter'
+export * from './express-validator-adapter'
 export * from './nodemailer-adapter'
