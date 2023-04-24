@@ -12,6 +12,7 @@ export class Validator {
     }
 
     const errors = validationResult(this.req)
+    
     if (errors.isEmpty()) {
       return {
         isValid: true
@@ -20,7 +21,7 @@ export class Validator {
 
     return {
       error: {
-        name: errors.array()[0]?.param
+        name: errors.array()[0]?.path
       }
     }
   }
