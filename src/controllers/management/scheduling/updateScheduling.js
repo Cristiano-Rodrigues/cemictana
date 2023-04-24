@@ -38,13 +38,11 @@ export class UpdateSchedulingController {
       }
     }
 
-    if ( schedulingDate ) {
-      const date = new Date(schedulingDate)
-      if (Date.now() > date.getTime()) {
-        return {
-          code: 400,
-          error: new InvalidEntry('schedulingDate')
-        }
+    const date = new Date(schedulingDate)
+    if (Date.now() > date.getTime()) {
+      return {
+        code: 400,
+        error: new InvalidEntry('schedulingDate')
       }
     }
 
