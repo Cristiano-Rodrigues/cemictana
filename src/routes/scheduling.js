@@ -4,6 +4,12 @@ import {
   UpdateSchedulingController,
   DeleteSchedulingController
 } from '../controllers/management/scheduling'
+import { Validation } from '../middlewares/validation'
+import {
+  createSchedulingValidation,
+  deleteSchedulingValidation,
+  updateSchedulingValidation
+} from './validations/express-validator'
 import {
   Connection,
   DefunctRepository,
@@ -12,7 +18,7 @@ import {
   SchedulingRepository,
   UnitRepository
 } from '../repositories'
-import { adaptController } from './adapters'
+import { adaptController, adaptMiddleware, Validator } from './adapters'
 
 export default router => {
   const params = [
@@ -29,10 +35,29 @@ export default router => {
   const updateSchedulingController = new UpdateSchedulingController(...params)
   const deleteSchedulingController = new DeleteSchedulingController(...params)
 
-  router.post('/scheduling', adaptController(createSchedulingController))
+  const createSchedulingValidator = new Validation(Validator, createSchedulingValidation)
+  const updateSchedulingValidator = new Validation(Validator, updateSchedulingValidation)
+  const deleteSchedulingValidator = new Validation(Validator, deleteSchedulingValidation)
+
+  router.post(
+    '/scheduling',
+    adaptMiddleware(createSchedulingValidator),
+    adaptController(createSchedulingController)
+  )
+
   router.get('/scheduling', adaptController(getSchedulingsController))
-  router.put('/scheduling', adaptController(updateSchedulingController))
-  router.delete('/scheduling/:id', adaptController(deleteSchedulingController))
+
+  router.put(
+    '/scheduling',
+    adaptMiddleware(updateSchedulingValidator),
+    adaptController(updateSchedulingController)
+  )
+
+  router.delete(
+    '/scheduling/:id',
+    adaptMiddleware(deleteSchedulingValidator),
+    adaptController(deleteSchedulingController)
+  )
 
   return router
 }
