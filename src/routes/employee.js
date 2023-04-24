@@ -4,8 +4,10 @@ import {
   UpdateEmployeeController,
   DeleteEmployeeController
 } from '../controllers/management/employee'
+import { Validation } from '../middlewares'
 import { Connection, EmployeeRepository } from '../repositories'
-import { adaptController } from './adapters'
+import { adaptController, adaptMiddleware, Validator } from './adapters'
+import { createEmployeeValidation, deleteEmployeeValidation, updateEmployeeValidation } from './validations/express-validator'
 
 export default router => {
   const params = [
@@ -18,10 +20,29 @@ export default router => {
   const updateEmployeeController = new UpdateEmployeeController(...params)
   const deleteEmployeeController = new DeleteEmployeeController(...params)
 
-  router.post('/employee', adaptController(createEmployeeController))
+  const createEmployeeValidator = new Validation(Validator, createEmployeeValidation)
+  const updateEmployeeValidator = new Validation(Validator, updateEmployeeValidation)
+  const deleteEmployeeValidator = new Validation(Validator, deleteEmployeeValidation)
+
+  router.post(
+    '/employee',
+    adaptMiddleware(createEmployeeValidator),
+    adaptController(createEmployeeController)
+  )
+  
   router.get('/employee', adaptController(getEmployeesController))
-  router.put('/employee', adaptController(updateEmployeeController))
-  router.delete('/employee/:id', adaptController(deleteEmployeeController))
+
+  router.put(
+    '/employee',
+    adaptMiddleware(updateEmployeeValidator),
+    adaptController(updateEmployeeController)
+  )
+
+  router.delete(
+    '/employee/:id',
+    adaptMiddleware(deleteEmployeeValidator),
+    adaptController(deleteEmployeeController)
+  )
 
   return router
 }
