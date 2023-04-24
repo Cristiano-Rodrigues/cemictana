@@ -4,8 +4,14 @@ import {
   UpdateDefunctController,
   DeleteDefunctController
 } from '../controllers/management/defunct'
+import {
+  createDefunctValidation,
+  deleteDefunctValidation,
+  updateDefunctValidation
+} from './validations/express-validator'
+import { Validation } from '../middlewares'
 import { Connection, DefunctRepository } from '../repositories'
-import { adaptController } from './adapters'
+import { adaptController, adaptMiddleware, Validator } from './adapters'
 
 export default router => {
   const params = [
@@ -18,10 +24,29 @@ export default router => {
   const updateDefunctController = new UpdateDefunctController(...params)
   const deleteDefunctController = new DeleteDefunctController(...params)
 
-  router.post('/defunct', adaptController(createDefunctController))
+  const createDefunctValidator = new Validation(Validator, createDefunctValidation)
+  const updateDefunctValidator = new Validation(Validator, updateDefunctValidation)
+  const deleteDefunctValidator = new Validation(Validator, deleteDefunctValidation)
+
+  router.post(
+    '/defunct',
+    adaptMiddleware(createDefunctValidator),
+    adaptController(createDefunctController)
+  )
+
   router.get('/defunct', adaptController(getDefunctsController))
-  router.put('/defunct', adaptController(updateDefunctController))
-  router.delete('/defunct/:id', adaptController(deleteDefunctController))
+
+  router.put(
+    '/defunct',
+    adaptMiddleware(updateDefunctValidator),
+    adaptController(updateDefunctController)
+  )
+
+  router.delete(
+    '/defunct/:id',
+    adaptMiddleware(deleteDefunctValidator),
+    adaptController(deleteDefunctController)
+  )
 
   return router
 }
