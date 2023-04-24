@@ -4,8 +4,14 @@ import {
   UpdateResponsibleController,
   DeleteResponsibleController
 } from '../controllers/management/responsible'
+import {
+  createResponsibleValidation,
+  deleteResponsibleValidation,
+  updateResponsibleValidation
+} from './validations/express-validator'
+import { Validation } from '../middlewares'
 import { Connection, ResponsibleRepository } from '../repositories'
-import { adaptController } from './adapters'
+import { adaptController, adaptMiddleware, Validator } from './adapters'
 
 export default router => {
   const params = [
@@ -18,10 +24,29 @@ export default router => {
   const updateResponsibleController = new UpdateResponsibleController(...params)
   const deleteResponsibleController = new DeleteResponsibleController(...params)
 
-  router.post('/responsible', adaptController(createResponsibleController))
+  const createResponsibleValidator = new Validation(Validator, createResponsibleValidation)
+  const updateResponsibleValidator = new Validation(Validator, updateResponsibleValidation)
+  const deleteResponsibleValidator = new Validation(Validator, deleteResponsibleValidation)
+
+  router.post(
+    '/responsible',
+    adaptMiddleware(createResponsibleValidator),
+    adaptController(createResponsibleController)
+  )
+
   router.get('/responsible', adaptController(getResponsiblesController))
-  router.put('/responsible', adaptController(updateResponsibleController))
-  router.delete('/responsible/:id', adaptController(deleteResponsibleController))
+
+  router.put(
+    '/responsible',
+    adaptMiddleware(updateResponsibleValidator),
+    adaptController(updateResponsibleController)
+  )
+
+  router.delete(
+    '/responsible/:id',
+    adaptMiddleware(deleteResponsibleValidator),
+    adaptController(deleteResponsibleController)
+  )
 
   return router
 }
