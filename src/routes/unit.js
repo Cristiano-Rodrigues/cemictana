@@ -4,8 +4,14 @@ import {
   UpdateUnitController,
   DeleteUnitController
 } from '../controllers/management/unit/'
+import {
+  createUnitValidation,
+  deleteUnitValidation,
+  updateUnitValidation
+} from './validations/express-validator'
+import { Validation } from '../middlewares/validation'
 import { Connection, UnitRepository } from '../repositories'
-import { adaptController } from './adapters'
+import { adaptController, adaptMiddleware, Validator } from './adapters'
 
 export default router => {
   const params = [
@@ -18,10 +24,29 @@ export default router => {
   const updateUnitController = new UpdateUnitController(...params)
   const deleteUnitController = new DeleteUnitController(...params)
 
-  router.post('/unit', adaptController(createUnitController))
+  const createUnitValidator = new Validation(Validator, createUnitValidation)
+  const updateUnitValidator = new Validation(Validator, updateUnitValidation)
+  const deleteUnitValidator = new Validation(Validator, deleteUnitValidation)
+
+  router.post(
+    '/unit',
+    adaptMiddleware(createUnitValidator),
+    adaptController(createUnitController)
+  )
+
   router.get('/unit', adaptController(getUnitsController))
-  router.put('/unit', adaptController(updateUnitController))
-  router.delete('/unit/:id', adaptController(deleteUnitController))
+
+  router.put(
+    '/unit',
+    adaptMiddleware(updateUnitValidator),
+    adaptController(updateUnitController)
+  )
+
+  router.delete(
+    '/unit/:id',
+    adaptMiddleware(deleteUnitValidator),
+    adaptController(deleteUnitController)
+  )
 
   return router
 }
