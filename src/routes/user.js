@@ -4,8 +4,14 @@ import {
   UpdateUserController,
   DeleteUserController
 } from '../controllers/management/user'
+import {
+  createUserValidation,
+  deleteUserValidation,
+  updateUserValidation
+} from './validations/express-validator'
+import { Validation } from '../middlewares/validation'
 import { Connection, UserRepository } from '../repositories'
-import { adaptController, Hasher, Mailer } from './adapters'
+import { adaptController, adaptMiddleware, Hasher, Mailer, Validator } from './adapters'
 
 export default router => {
   const params = [
@@ -20,10 +26,29 @@ export default router => {
   const updateUserController = new UpdateUserController(...params)
   const deleteUserController = new DeleteUserController(...params)
 
-  router.post('/user', adaptController(createUserController))
+  const createUserValidator = new Validation(Validator, createUserValidation)
+  const updateUserValidator = new Validation(Validator, updateUserValidation)
+  const deleteUserValidator = new Validation(Validator, deleteUserValidation)
+
+  router.post(
+    '/user',
+    adaptMiddleware(createUserValidator),
+    adaptController(createUserController)
+  )
+
   router.get('/user', adaptController(getUsersController))
-  router.put('/user', adaptController(updateUserController))
-  router.delete('/user/:id', adaptController(deleteUserController))
+
+  router.put(
+    '/user',
+    adaptMiddleware(updateUserValidator),
+    adaptController(updateUserController)
+  )
+
+  router.delete(
+    '/user/:id',
+    adaptMiddleware(deleteUserValidator),
+    adaptController(deleteUserController)
+  )
 
   return router
 }
