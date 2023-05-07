@@ -9,7 +9,7 @@ import {
   createSchedulingValidation,
   deleteSchedulingValidation,
   updateSchedulingValidation
-} from './validations/express-validator'
+} from './validations/expressValidator'
 import {
   Connection,
   DefunctRepository,

@@ -8,7 +8,7 @@ import {
   createDefunctValidation,
   deleteDefunctValidation,
   updateDefunctValidation
-} from './validations/express-validator'
+} from './validations/expressValidator'
 import { Validation } from '../middlewares'
 import { Connection, DefunctRepository } from '../repositories'
 import { adaptController, adaptMiddleware, Validator } from './adapters'

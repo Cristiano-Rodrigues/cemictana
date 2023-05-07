@@ -8,7 +8,7 @@ import {
   createUnitValidation,
   deleteUnitValidation,
   updateUnitValidation
-} from './validations/express-validator'
+} from './validations/expressValidator'
 import { Validation } from '../middlewares/validation'
 import { Connection, UnitRepository } from '../repositories'
 import { adaptController, adaptMiddleware, Validator } from './adapters'

@@ -8,7 +8,7 @@ import {
   createResponsibleValidation,
   deleteResponsibleValidation,
   updateResponsibleValidation
-} from './validations/express-validator'
+} from './validations/expressValidator'
 import { Validation } from '../middlewares'
 import { Connection, ResponsibleRepository } from '../repositories'
 import { adaptController, adaptMiddleware, Validator } from './adapters'

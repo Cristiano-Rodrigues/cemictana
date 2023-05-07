@@ -7,7 +7,7 @@ import {
 import { Validation } from '../middlewares'
 import { Connection, EmployeeRepository } from '../repositories'
 import { adaptController, adaptMiddleware, Validator } from './adapters'
-import { createEmployeeValidation, deleteEmployeeValidation, updateEmployeeValidation } from './validations/express-validator'
+import { createEmployeeValidation, deleteEmployeeValidation, updateEmployeeValidation } from './validations/expressValidator'
 
 export default router => {
   const params = [
