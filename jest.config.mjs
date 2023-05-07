@@ -2,7 +2,7 @@ export default {
   clearMocks: true,
 
   collectCoverageFrom: [
-    '<rootDir>/controllers/**/*.test.js'
+    '<rootDir>/**/*.test.js'
   ],
 
   coverageDirectory: 'coverage',
