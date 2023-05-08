@@ -1,4 +1,4 @@
-  import { ServerError } from '../../errors/serverError'
+import { ServerError } from '../../errors/serverError'
 import { Unauthorized } from '../../errors/unauthorized'
 
 const sendError = field => ({
