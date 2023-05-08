@@ -2,6 +2,7 @@ import session from 'express-session'
 import express from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
+import { Unauthorized } from './src/middlewares/errors/unauthorized'
 
 dotenv.config()
 
@@ -9,8 +10,6 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use(express.static(path.join(process.cwd(), '/public')))
 
 app.use(session({
   secret: process.env.SECRET,
@@ -22,10 +21,30 @@ app.use(session({
   }
 }))
 
+app.use((req, res, next) => {
+  const serveStatic = express.static(path.join(process.cwd(), '/public'))
+  const urlParts = req.url.split('/')
+  if (urlParts[1] != 'pages') {
+    return next()
+  }
+  const user = req.session?.user
+  if (
+    (urlParts[2] == 'admin' && user?.permission != 'admin') ||
+    (urlParts[2] == 'standard' && user?.permission != 'standard')
+  ) {
+    return res.status(401).send({
+      error: new Unauthorized()
+    })
+  }
+
+  req.url = urlParts.slice(2).join('/')
+  serveStatic(req, res, next)
+})
+
 app.use((_, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
   next()
 })
 
