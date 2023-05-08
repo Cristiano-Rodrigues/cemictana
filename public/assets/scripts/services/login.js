@@ -6,22 +6,20 @@ form.addEventListener('submit', async evt => {
   evt.preventDefault()
 
   try {
-    const response = await fetch('http://localhost:8080/api/v1/login', {
+    const response = await request({
+      url: 'http://localhost:8080/api/v1/login',
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         email: form.elements.email.value,
         password: form.elements.password.value
       })
     })
-
-    const data = await response.json()
-    if (data.code != 200 || !data.success) {
-      console.log(data.error)
-      message.innerText = mapError(data.error.name)
+    if (response.code != 200 || !response.success) {
+      message.innerText = mapError(response.error.name)
       alert.classList.add('visible')
+      return
     }
-    localStorage.setItem('token', data.result.token)
+    localStorage.setItem('token', response.result.token)
     window.location.href = './standard/'
   } catch (error) {
     console.error(error)

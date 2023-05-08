@@ -19,8 +19,14 @@
       <a href="login.html" class="secondary hidden">Entrar</a>
     </div>
     <section class="container">
+      <div class="alert alert-danger" id="alert">
+        <div class="message">Danger message</div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
       <div class="form-wrapper">
-        <div class="form">
+        <form class="form" action="./login.html" id="form">
           <div class="pattern1">
             <img src="./assets/images/background pattern.png" alt="">
           </div>
@@ -28,16 +34,16 @@
           <p class="highlights">Preencha os campos abaixo para continuar</p>
           <div class="fields">
             <div class="field">
-              <input type="text" placeholder="Nome completo">
+              <input type="text" placeholder="Nome completo" name="name">
             </div>
             <div class="field">
-              <input type="text" placeholder="Identificação">
+              <input type="text" placeholder="Identificação" name="identification">
             </div>
             <div class="field">
-              <input type="text" placeholder="Email">
+              <input type="email" placeholder="Email" name="email">
             </div>
             <div class="field">
-              <input type="text" placeholder="Palavra-passe">
+              <input type="password" placeholder="Palavra-passe" name="password">
             </div>
           </div>
           <button class="primary">Criar conta</button>
@@ -45,10 +51,14 @@
           <div class="pattern2">
             <img src="./assets/images/background pattern.png" alt="">
           </div>
-        </div>
+        </form>
       </div>
       <div class="bg-wrapper"></div>
     </section>
   </main>
+  <script src="assets/scripts/inaractivity/alert.js"></script>
+  <script src="assets/scripts/services/error-messages.js"></script>
+  <script src="assets/scripts/services/request.js"></script>
+  <script src="assets/scripts/services/signup.js"></script>
 </body>
 </html>
