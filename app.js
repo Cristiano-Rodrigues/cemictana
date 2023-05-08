@@ -43,6 +43,7 @@ function registerRoute(route) {
 
 Promise.all([
   'main',
+  'account',
   'employee',
   'responsible',
   'defunct',
