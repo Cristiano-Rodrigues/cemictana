@@ -26,7 +26,8 @@ main {
   margin-bottom: 20px;
   color: #333;
   border-radius: 40px;
-  background-color: var(--secondary25);
+  background-color: white;
+  border: 1px solid var(--secondary75);
   cursor: pointer;
 }
 
