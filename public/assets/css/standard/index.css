@@ -1,0 +1,33 @@
+.main .report-wrapper {
+  height: 175px;
+}
+
+.data-table-wrapper {
+  transform: translateY(-80px);
+}
+
+.logo {
+  width: 120px;
+  margin-right: auto;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.nav-links .option {
+  font-size: 9pt;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-links .option:nth-child(1) {
+  text-decoration: underline;
+}
