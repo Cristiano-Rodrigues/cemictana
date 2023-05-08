@@ -1,5 +1,6 @@
-import dotenv from 'dotenv'
+import session from 'express-session'
 import express from 'express'
+import dotenv from 'dotenv'
 import path from 'path'
 
 dotenv.config()
@@ -10,6 +11,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(process.cwd(), '/public')))
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 60 * 60 * 24,
+    secure: false
+  }
+}))
 
 app.use((_, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
