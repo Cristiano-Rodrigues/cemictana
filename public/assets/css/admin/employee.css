@@ -1,0 +1,143 @@
+main {
+  display: flex;
+  min-height: 100vh;
+}
+
+.nav-links .option:nth-child(2) {
+  color: var(--secondary75);
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.data-table-wrapper {
+  width: 100%;
+  padding: 20px;
+}
+
+.data-table-wrapper .data-table {
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 1px 3px 3px #E0E7F0;
+  background-color: #F4F4F4;
+}
+
+.data-table-wrapper .data-table .header {
+  background-color: #F7F9FC;
+}
+
+.data-table-wrapper .data-table .header .controls {
+  display: flex;
+  width: 100%;
+  padding: 15px;
+}
+
+.data-table-wrapper .data-table .header .controls .filter {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  font-size: 11pt;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.data-table-wrapper .data-table .header .controls .search-box {
+  position: relative;
+  width: 200px;
+  height: 30px;
+}
+
+.data-table-wrapper .data-table .header .controls .search-box input {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 7px 10px 7px 30px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.data-table-wrapper .data-table .header .controls .search-box i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.data-table-wrapper .data-table .header .controls .add-button {
+  height: 30px;
+  margin-left: auto;
+  padding: 0 20px;
+  color: white;
+  border-radius: 5px;
+  background-color: var(--secondary75);
+  cursor: pointer;
+}
+
+.data-table-wrapper .data-table .content .table {
+  width: 100%;
+  border-spacing: 0;
+  table-layout: fixed;
+  border: none;
+}
+
+.data-table-wrapper .data-table .content .table th {
+  padding: 15px;
+  font-size: 9pt;
+  text-align: left;
+  color: #333;
+  text-transform: uppercase;
+  border-bottom: 1px solid lightgray;
+  background-color: #F7F9FC;
+}
+
+.data-table-wrapper .data-table .content .table td {
+  padding: 15px;
+  color: #333;
+  font-size: 10pt;
+  background-color: white;
+}
+
+.data-table-wrapper .data-table .content .table tr:nth-child(even) td {
+  background-color: #F7F9FC;
+}
+
+.data-table-wrapper .data-table .content .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-top: 1px solid lightgray;
+  background-color: #F7F9FC;
+}
+
+.data-table-wrapper .data-table .content .footer .total,
+.data-table-wrapper .data-table .content .footer .current-page .page {
+  font-size: 9pt;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.data-table-wrapper .data-table .content .footer .current-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.data-table-wrapper .data-table .content .footer .current-page :is(.left, .right) {
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
