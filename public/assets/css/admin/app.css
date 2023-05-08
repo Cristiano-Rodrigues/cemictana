@@ -3,51 +3,8 @@ main {
   min-height: 100vh;
 }
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 10px;
-  background-color: #F4F4F4;
-}
-
-.sidebar .logo img {
-  width: 120px;
-}
-
-.separator {
-  width: 100%;
-  height: 1px;
-  margin: 8px 0;
-  background-color: lightgray;
-}
-
-.section-name {
-  margin-bottom: 10px;
-  font-size: 9pt;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #333;
-}
-
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: auto;
-}
-
-.nav-links .option,
-.sidebar .option {
-  width: 100%;
-  min-width: max-content;
-  margin: 5px 0;
-  padding: 10px;
-  font-size: 10pt;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #333;
-  border-radius: 3px;
-  box-shadow: 1px 3px 1px lightgray;
+.nav-links .option:nth-child(1) {
+  color: var(--secondary75);
 }
 
 .main {
@@ -57,80 +14,6 @@ main {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.main .topbar {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-}
-
-.main .topbar .section-name {
-  margin-right: auto;
-  font-size: 10pt;
-  font-weight: bold;
-  color: white;
-}
-
-.main .topbar input {
-  height: fit-content;
-  margin-right: 10px;
-  padding: 10px 10px;
-  border-radius: 2px;
-  background-color: white;
-}
-
-.main .topbar .user-data img {
-  width: 40px;
-  height: 40px;
-}
-
-.main .report-wrapper {
-  display: flex;
-  width: 100%;
-  height: 245px;
-  padding: 20px;
-  padding-top: 100px;
-  gap: 20px;
-  background-color: var(--secondary50);
-}
-
-.main .report-wrapper .report-card {
-  display: flex;
-  width: 250px;
-  height: 125px;
-  padding: 15px;
-  border-radius: 3px;
-  background-color: white;
-}
-
-.main .report-wrapper .report-card .desc .name {
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #333;
-}
-
-.main .report-wrapper .report-card .desc .amount {
-  font-size: 60px;
-  color: var(--secondary50);
-  font-weight: bolder;
-}
-
-.main .report-wrapper .report-card .icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  margin-left: auto;
-  color: white;
-  font-size: 16pt;
-  border-radius: 20px;
-  background-color: var(--primary75);
 }
 
 .calendar-wrapper {

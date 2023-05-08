@@ -1,0 +1,46 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px;
+  background-color: #F4F4F4;
+}
+
+.sidebar .logo img {
+  width: 120px;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  margin: 8px 0;
+  background-color: lightgray;
+}
+
+.section-name {
+  margin-bottom: 10px;
+  font-size: 9pt;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: auto;
+}
+
+.nav-links .option,
+.sidebar .option {
+  width: 100%;
+  min-width: max-content;
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 10pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+  border-radius: 3px;
+  box-shadow: 1px 3px 1px lightgray;
+}

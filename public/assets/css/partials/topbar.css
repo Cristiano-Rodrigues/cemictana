@@ -1,0 +1,29 @@
+.main .topbar {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+.main .topbar .section-name {
+  margin-right: auto;
+  font-size: 10pt;
+  font-weight: bold;
+  color: white;
+}
+
+.main .topbar input {
+  height: fit-content;
+  margin-right: 10px;
+  padding: 10px 10px;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.main .topbar .user-data img {
+  width: 40px;
+  height: 40px;
+}
