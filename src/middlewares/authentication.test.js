@@ -9,7 +9,7 @@ class JWTHandlerStub {
 const authentication = new Authentication(JWTHandlerStub)
 
 describe('Authentication', () => {
-  it('Should call JWTHandler.verify method with correct params', async () => {
+  test('Should call JWTHandler.verify method with correct params', async () => {
     class JWTHandlerStub {
       verify (token) {
         expect(token).toBe('valid_token')
@@ -23,7 +23,7 @@ describe('Authentication', () => {
     })
   })
 
-  it('Should return Unauthorized error if an invalid token is given', async () => {
+  test('Should return Unauthorized error if an invalid token is given', async () => {
     class JWTHandlerStub {
       verify (token) {
         return null
@@ -41,7 +41,7 @@ describe('Authentication', () => {
     })
   })
 
-  it('Should return Unauthorized error if any error is thrown while decoding token', async () => {
+  test('Should return Unauthorized error if any error is thrown while decoding token', async () => {
     class JWTHandlerStub {
       verify (token) {
         throw new Error('any_error')
@@ -56,7 +56,7 @@ describe('Authentication', () => {
     })
   })
 
-  it('Should return a success object if no error', async () => {
+  test('Should return a success object if no error', async () => {
     const response = await authentication.handle({
       body: {
         token: 'valid_token'
