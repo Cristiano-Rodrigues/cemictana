@@ -89,3 +89,42 @@ p, .highlight {
   opacity: 0;
   pointer-events: none;
 }
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  min-width: 250px;
+  padding: 10px;
+  font-size: 10pt;
+  border-radius: 0 0 5px 5px;
+  transform: translateX(-50%);
+  display: none;
+}
+
+.alert.visible {
+  display: flex;
+}
+
+.alert .close-btn {
+  margin-left: 10px;
+  font-size: 12pt;
+  color: white;
+  border-radius: 3px;
+  background-color: #FFFFFF80;
+  cursor: pointer;
+}
+
+.alert.alert-danger {
+  color: white;
+  background-color: #FF6767;
+  box-shadow: 3px 3px 1px #FF8484;
+}
+
+.alert.alert-success {
+  color: white;
+  background-color: #0BA70B;
+  box-shadow: 3px 3px 1px #007d00;
+}
