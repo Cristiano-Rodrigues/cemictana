@@ -22,7 +22,7 @@ app.use(session({
 }))
 
 app.use((req, res, next) => {
-  const serveStatic = express.static(path.join(process.cwd(), '/public'))
+  const serveStatic = express.static(path.join(process.cwd(), '/pages'))
   const urlParts = req.url.split('/')
   if (urlParts[1] != 'pages') {
     return next()
