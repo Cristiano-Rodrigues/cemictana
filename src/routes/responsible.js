@@ -9,9 +9,9 @@ import {
   deleteResponsibleValidation,
   updateResponsibleValidation
 } from './validations/expressValidator'
-import { Validation } from '../middlewares'
+import { JWTAuthentication, Validation } from '../middlewares'
 import { Connection, ResponsibleRepository } from '../repositories'
-import { adaptController, adaptMiddleware, Validator } from './adapters'
+import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
 
 export default router => {
   const params = [
@@ -24,26 +24,35 @@ export default router => {
   const updateResponsibleController = new UpdateResponsibleController(...params)
   const deleteResponsibleController = new DeleteResponsibleController(...params)
 
+  const tokenAuth = new JWTAuthentication(JWTHandler)
+
   const createResponsibleValidator = new Validation(Validator, createResponsibleValidation)
   const updateResponsibleValidator = new Validation(Validator, updateResponsibleValidation)
   const deleteResponsibleValidator = new Validation(Validator, deleteResponsibleValidation)
 
   router.post(
     '/responsible',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(createResponsibleValidator),
     adaptController(createResponsibleController)
   )
 
-  router.get('/responsible', adaptController(getResponsiblesController))
+  router.get(
+    '/responsible',
+    adaptMiddleware(tokenAuth),
+    adaptController(getResponsiblesController)
+  )
 
   router.put(
     '/responsible',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(updateResponsibleValidator),
     adaptController(updateResponsibleController)
   )
 
   router.delete(
     '/responsible/:id',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(deleteResponsibleValidator),
     adaptController(deleteResponsibleController)
   )

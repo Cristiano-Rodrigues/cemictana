@@ -18,7 +18,8 @@ import {
   SchedulingRepository,
   UnitRepository
 } from '../repositories'
-import { adaptController, adaptMiddleware, Validator } from './adapters'
+import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
+import { JWTAuthentication } from '../middlewares/jwtAuth'
 
 export default router => {
   const params = [
@@ -35,26 +36,35 @@ export default router => {
   const updateSchedulingController = new UpdateSchedulingController(...params)
   const deleteSchedulingController = new DeleteSchedulingController(...params)
 
+  const tokenAuth = new JWTAuthentication(JWTHandler)
+
   const createSchedulingValidator = new Validation(Validator, createSchedulingValidation)
   const updateSchedulingValidator = new Validation(Validator, updateSchedulingValidation)
   const deleteSchedulingValidator = new Validation(Validator, deleteSchedulingValidation)
 
   router.post(
     '/scheduling',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(createSchedulingValidator),
     adaptController(createSchedulingController)
   )
 
-  router.get('/scheduling', adaptController(getSchedulingsController))
+  router.get(
+    '/scheduling',
+    adaptMiddleware(tokenAuth),
+    adaptController(getSchedulingsController)
+  )
 
   router.put(
     '/scheduling',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(updateSchedulingValidator),
     adaptController(updateSchedulingController)
   )
 
   router.delete(
     '/scheduling/:id',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(deleteSchedulingValidator),
     adaptController(deleteSchedulingController)
   )
