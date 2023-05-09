@@ -6,7 +6,7 @@ const sendError = () => ({
   error: new Unauthorized()
 })
 
-export class Authentication {
+export class JWTAuthentication {
   constructor (JWTHandler) {
     this.jwthandler = new JWTHandler()
   }

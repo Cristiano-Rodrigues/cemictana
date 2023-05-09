@@ -1,4 +1,4 @@
-import { Authentication } from './authentication'
+import { JWTAuthentication } from './jwtAuth'
 import { Unauthorized } from './errors/unauthorized'
 
 class JWTHandlerStub {
@@ -6,16 +6,16 @@ class JWTHandlerStub {
     return true
   }
 }
-const authentication = new Authentication(JWTHandlerStub)
+const authentication = new JWTAuthentication(JWTHandlerStub)
 
-describe('Authentication', () => {
+describe('JWTAuthentication', () => {
   test('Should call JWTHandler.verify method with correct params', async () => {
     class JWTHandlerStub {
       verify (token) {
         expect(token).toBe('valid_token')
       }
     }
-    const authentication = new Authentication(JWTHandlerStub)
+    const authentication = new JWTAuthentication(JWTHandlerStub)
     await authentication.handle({
       body: {
         token: 'valid_token'
@@ -29,7 +29,7 @@ describe('Authentication', () => {
         return null
       }
     }
-    const authentication = new Authentication(JWTHandlerStub)
+    const authentication = new JWTAuthentication(JWTHandlerStub)
     const response = await authentication.handle({
       body: {
         token: 'invalid_token'
@@ -47,7 +47,7 @@ describe('Authentication', () => {
         throw new Error('any_error')
       }
     }
-    const authentication = new Authentication(JWTHandlerStub)
+    const authentication = new JWTAuthentication(JWTHandlerStub)
     const response = await authentication.handle({})
 
     expect(response).toEqual({
