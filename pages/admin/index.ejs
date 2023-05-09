@@ -15,82 +15,15 @@
 </head>
 <body>
   <main>
-    <div class="sidebar">
-      <div class="logo">
-        <img src="../../assets/images/logo.png" alt="Logo do Cemictana">
-      </div>
-      <div class="separator"></div>
-      <div class="section-name">Menu de admistração</div>
-      <div class="nav-links">
-        <a href="./index" class="option">
-          <i class='bx bxs-home-alt-2'></i>
-          Principal
-        </a>
-        <a href="./employee" class="option">
-          <i class='bx bxs-group'></i>
-          Funcionários
-        </a>
-        <a href="./" class="option">
-          <i class='bx bx-male-female'></i>
-          Responsáveis
-        </a>
-        <a href="./" class="option">
-          <i class='bx bxs-wallet-alt'></i>
-          Unidades
-        </a>
-        <a href="./" class="option">
-          <i class='bx bxs-user-x'></i>
-          Defuntos
-        </a>
-        <a href="./" class="option">
-          <i class='bx bxs-user'></i>
-          Usuários
-        </a>
-      </div>
-      <div class="separaor"></div>
-      <div class="section-name">Conta</div>
-      <a href="./" class="option">
-        <i class='bx bxs-cog'></i>
-        Configurações da conta
-      </a>
-    </div>
+    <%- include('../partials/sidebar') %>
+
     <div class="main">
-      <div class="topbar">
-        <div class="section-name">Dashboard</div>
-        <input type="text" placeholder="Pesquise">
-        <div class="user-data">
-          <img src="../../assets/images/person photo.png" alt="">
-        </div>
-      </div>
-      <div class="report-wrapper">
-        <div class="report-card">
-          <div class="desc">
-            <p class="name">Funcionários</p>
-            <p class="amount">15</p>
-          </div>
-          <div class="icon">
-            <i class="bx bx-group"></i>
-          </div>
-        </div>
-        <div class="report-card">
-          <div class="desc">
-            <p class="name">Funcionários</p>
-            <p class="amount">15</p>
-          </div>
-          <div class="icon">
-            <i class="bx bx-group"></i>
-          </div>
-        </div>
-        <div class="report-card">
-          <div class="desc">
-            <p class="name">Funcionários</p>
-            <p class="amount">15</p>
-          </div>
-          <div class="icon">
-            <i class="bx bx-group"></i>
-          </div>
-        </div>
-      </div>
+      <%- include('../partials/topbar', {
+        sectionName: 'Dashboard'
+      }) %>
+
+      <%- include('../partials/report') %>
+      
       <div class="calendar-wrapper">
         <div class="schedule-calendar" id="calendar">
           <div class="header">

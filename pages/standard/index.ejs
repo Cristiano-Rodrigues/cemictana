@@ -31,58 +31,8 @@
         </div>
       </div>
       <div class="report-wrapper"></div>
-      <div class="data-table-wrapper">
-        <div class="data-table">
-          <div class="header">
-            <div class="controls">
-              <button class="filter">
-                <i class='bx bxs-filter-alt'></i>
-              </button>
-              <div class="search-box">
-                <i class="bx bx-search"></i>
-                <input type="search" placeholder="Pesquisar">
-              </div>
-              <button class="add-button">
-                <i class="bx bx-plus"></i>
-                Adicionar funcionário
-              </button>
-            </div>
-          </div>
-          <div class="content">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>
-                    <input type="checkbox">
-                  </th>
-                  <th>#</th>
-                  <th>Nome</th>
-                  <th>Identificação</th>
-                  <th>Função</th>
-                  <th>Telefone</th>
-                  <th>Salário</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-            <div class="footer">
-              <div class="total">
-                0-0 de 0
-              </div>
-              <div class="current-page">
-                <button class="left">
-                  <i class="bx bx-chevron-left"></i>
-                </button>
-                <div class="page">0/0</div>
-                <button class="right">
-                  <i class="bx bx-chevron-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <%- include('../partials/data-table') %>
     </div>
   </main>
 </body>
