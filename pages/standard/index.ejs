@@ -32,7 +32,10 @@
       </div>
       <div class="report-wrapper"></div>
       
-      <%- include('../partials/data-table') %>
+      <%- include('../partials/data-table', {
+        actionText: 'Criar agendamento',
+        data: []
+      }) %>
     </div>
   </main>
 </body>
