@@ -21,8 +21,12 @@ app.use(session({
   }
 }))
 
+app.use(express.static(path.join(process.cwd(), '/pages')))
+
+app.set('views', path.join(process.cwd(), '/pages'))
+app.set('view engine', 'ejs')
+
 app.use((req, res, next) => {
-  const serveStatic = express.static(path.join(process.cwd(), '/pages'))
   const urlParts = req.url.split('/')
   if (urlParts[1] != 'pages') {
     return next()
@@ -38,11 +42,12 @@ app.use((req, res, next) => {
   }
 
   req.url = urlParts.slice(2).join('/')
-  try {
-    serveStatic(req, res, next)
-  } catch (e) {
-    res.status(404).send('Not found')
-  }
+  res.render(req.url, { user }, (err, file) => {
+    if (err) {
+      return res.status(404).send()
+    }
+    res.send(file)
+  })
 })
 
 app.use((_, res, next) => {
