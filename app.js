@@ -38,7 +38,11 @@ app.use((req, res, next) => {
   }
 
   req.url = urlParts.slice(2).join('/')
-  serveStatic(req, res, next)
+  try {
+    serveStatic(req, res, next)
+  } catch (e) {
+    res.status(404).send('Not found')
+  }
 })
 
 app.use((_, res, next) => {
