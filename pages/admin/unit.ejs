@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="../../assets/css/admin/page.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <style>
-    .nav-links .option:nth-child(2) {
+    .nav-links .option:nth-child(4) {
       color: var(--secondary75);
     }
   </style>
-  <title>Funcionários</title>
+  <title>Unidades</title>
 </head>
 <body>
   <main>
@@ -25,13 +25,13 @@
 
     <div class="main">
       <%- include('../partials/topbar', {
-        sectionName: 'Funcionários'
+        sectionName: 'Unidades'
       }) %>
 
       <%- include('../partials/report') %>
 
       <%- include('../partials/data-table', {
-        actionText: 'Adicionar Funcionário',
+        actionText: 'Adicionar Unidade',
         data: []
       }) %>
     </div>
