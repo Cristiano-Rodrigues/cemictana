@@ -1,3 +1,21 @@
+/* Topbar */
+.nav-links {
+  display: flex;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.nav-links .option {
+  font-size: 9pt;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-links .option:nth-child(3) {
+  color: var(--secondary75);
+}
+
 /* Banner */
 .banner {
   height: 290px;
