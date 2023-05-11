@@ -1,4 +1,5 @@
 export * from './createDefunct'
 export * from './getDefuncts'
+export * from './searchDefunctName'
 export * from './updateDefunct'
 export * from './deleteDefunct'
