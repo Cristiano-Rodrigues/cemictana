@@ -1,10 +1,21 @@
-import { LoginController } from '../controllers/management/account'
-import { loginValidation } from './validations/expressValidator'
+import { LoginController, SignUpController } from '../controllers/management/account'
+import { loginValidation, signUpValidation } from './validations/expressValidator'
 import { Validation } from '../middlewares/validation'
-import { Connection, UserRepository } from '../repositories'
-import { adaptController, adaptMiddleware, Hasher, JWTHandler, Validator } from './adapters'
+import {
+  Connection, 
+  ResponsibleRepository,
+  UserRepository
+} from '../repositories'
+import { adaptController, adaptMiddleware, Hasher, JWTHandler, Mailer, Validator } from './adapters'
 
 export default router => {
+  const signUpController = new SignUpController(
+    Connection,
+    UserRepository,
+    ResponsibleRepository,
+    Hasher,
+    Mailer
+  )
   const loginController = new LoginController(
     Connection,
     UserRepository,
@@ -12,7 +23,14 @@ export default router => {
     JWTHandler
   )
 
+  const signUpValidator = new Validation(Validator, signUpValidation)
   const loginValidator = new Validation(Validator, loginValidation)
+
+  router.post(
+    '/signup',
+    adaptMiddleware(signUpValidator),
+    adaptController(signUpController)
+  )
 
   router.post(
     '/login',
