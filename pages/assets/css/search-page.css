@@ -12,10 +12,6 @@
   text-transform: uppercase;
 }
 
-.nav-links .option:nth-child(2) {
-  color: var(--secondary75);
-}
-
 /* Banner */
 .banner {
   height: 290px;
