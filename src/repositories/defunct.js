@@ -29,6 +29,14 @@ export class DefunctRepository {
     return (await this.query(sql.query, sql.values))[0]
   }
 
+  async searchByName (name) {
+    const sql = {
+      query: 'SELECT * FROM defunct WHERE name LIKE ? LIMIT 1000',
+      values: [`%${name}%`]
+    }
+    return await this.query(sql.query, sql.values)
+  }
+
   async getById (id) {
     const sql = {
       query: 'SELECT * FROM defunct WHERE id=? LIMIT 1',
