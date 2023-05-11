@@ -1,12 +1,14 @@
 import {
   CreateDefunctController,
   GetDefunctsController,
+  SearchDefunctNameController,
   UpdateDefunctController,
   DeleteDefunctController
 } from '../controllers/management/defunct'
 import {
   createDefunctValidation,
   deleteDefunctValidation,
+  searchDefunctNameValidation,
   updateDefunctValidation
 } from './validations/expressValidator'
 import { JWTAuthentication, Validation } from '../middlewares'
@@ -21,12 +23,14 @@ export default router => {
 
   const createDefunctController = new CreateDefunctController(...params)
   const getDefunctsController = new GetDefunctsController(...params)
+  const searchDefunctNameController = new SearchDefunctNameController(...params)
   const updateDefunctController = new UpdateDefunctController(...params)
   const deleteDefunctController = new DeleteDefunctController(...params)
 
   const tokenAuth = new JWTAuthentication(JWTHandler)
 
   const createDefunctValidator = new Validation(Validator, createDefunctValidation)
+  const searchDefunctNameValidator = new Validation(Validator, searchDefunctNameValidation)
   const updateDefunctValidator = new Validation(Validator, updateDefunctValidation)
   const deleteDefunctValidator = new Validation(Validator, deleteDefunctValidation)
 
@@ -41,6 +45,12 @@ export default router => {
     '/defunct',
     adaptMiddleware(tokenAuth),
     adaptController(getDefunctsController)
+  )
+
+  router.get(
+    '/defunct/:search',
+    adaptMiddleware(searchDefunctNameValidator),
+    adaptController(searchDefunctNameController)
   )
 
   router.put(
