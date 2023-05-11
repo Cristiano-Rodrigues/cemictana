@@ -12,7 +12,7 @@
   text-transform: uppercase;
 }
 
-.nav-links .option:nth-child(3) {
+.nav-links .option:nth-child(2) {
   color: var(--secondary75);
 }
 
