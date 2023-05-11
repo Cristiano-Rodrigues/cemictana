@@ -1,9 +1,9 @@
+import expressMySqlSession from 'express-mysql-session'
 import session from 'express-session'
 import express from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 import { Unauthorized } from './src/middlewares/errors/unauthorized'
-import expressMySqlSession from 'express-mysql-session'
 
 dotenv.config()
 
