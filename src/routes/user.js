@@ -35,6 +35,7 @@ export default router => {
 
   router.post(
     '/user',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(createUserValidator),
     adaptController(createUserController)
   )

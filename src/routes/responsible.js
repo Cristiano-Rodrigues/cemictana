@@ -32,6 +32,7 @@ export default router => {
 
   router.post(
     '/responsible',
+    adaptMiddleware(tokenAuth),
     adaptMiddleware(createResponsibleValidator),
     adaptController(createResponsibleController)
   )
