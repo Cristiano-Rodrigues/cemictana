@@ -4,34 +4,16 @@ const message = alert.querySelector('.message')
 
 form.addEventListener('submit', async evt => {
   evt.preventDefault()
-  const token = localStorage.getItem('token')
 
   try {
-    let response = await request({
-      url: 'http://localhost:8080/api/v1/responsible',
+    const response = await request({
+      url: 'http://localhost:8080/api/v1/signup',
       method: 'POST',
       body: JSON.stringify({
         name: form.elements.name.value,
         identification: form.elements.identification.value,
-        token
-      })
-    })
-
-    if (response.code != 201 || !response.success) {
-      message.innerText = mapError(response.error.name)
-      alert.classList.add('visible')
-      return
-    }
-
-    response = await request({
-      url: 'http://localhost:8080/api/v1/user',
-      method: 'POST',
-      body: JSON.stringify({
-        name: form.elements.name.value,
         email: form.elements.email.value,
-        password: form.elements.password.value,
-        permission: 'standard',
-        token
+        password: form.elements.password.value
       })
     })
 
@@ -41,7 +23,7 @@ form.addEventListener('submit', async evt => {
       return
     }
 
-    window.location.href = './login.html'
+    window.location.href = './login'
   } catch (error) {
     console.error(error)
   }
