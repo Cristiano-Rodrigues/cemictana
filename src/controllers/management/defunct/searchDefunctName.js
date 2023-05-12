@@ -10,7 +10,7 @@ export class SearchDefunctNameController {
   }
 
   async handle (req) {
-    const search = req.params.search ?? ''
+    const search = req.query.search ?? ''
 
     try {
       const conn = new this.Connection()

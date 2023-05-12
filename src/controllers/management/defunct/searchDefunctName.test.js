@@ -28,7 +28,7 @@ describe('SearchDefunctNameController', () => {
     )
 
     const result = await searchDefunctNameController.handle({
-      params: {
+      query: {
         search: 'any_search'
       }
     })
@@ -40,7 +40,7 @@ describe('SearchDefunctNameController', () => {
 
   test('Should return a success object if no error', async () => {
     const result = await searchDefunctNameController.handle({
-      params: {
+      query: {
         search: 'any_search'
       }
     })

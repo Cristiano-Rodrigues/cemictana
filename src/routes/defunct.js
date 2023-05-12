@@ -48,7 +48,7 @@ export default router => {
   )
 
   router.get(
-    '/defunct/:search',
+    '/search/',
     adaptMiddleware(searchDefunctNameValidator),
     adaptController(searchDefunctNameController)
   )

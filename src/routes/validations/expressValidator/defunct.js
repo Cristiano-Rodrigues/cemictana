@@ -1,7 +1,7 @@
-import { body, param } from 'express-validator'
+import { body, param, query } from 'express-validator'
 
 export const searchDefunctNameValidation = [
-  param('search').isString()
+  query('search').isString()
 ]
 
 export const createDefunctValidation = [
