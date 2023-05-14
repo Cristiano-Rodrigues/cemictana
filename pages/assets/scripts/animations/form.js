@@ -1,8 +1,21 @@
 const addButton = document.getElementById('add-button')
+const closeBtn = document.getElementById('close-btn')
 
-addButton.addEventListener('click', () => {
-  const targetId = addButton.dataset.relto
+const handleClick = (evtTarget, action) => {
+  const targetId = evtTarget.dataset.relto
   const target = document.getElementById(targetId)
   if (!target) return
-  target.classList.add('visible')  
+  action(target)
+}
+
+addButton.addEventListener('click', () => {
+  handleClick(addButton, target => {
+    target.classList.add('visible')
+  })
+})
+
+closeBtn.addEventListener('click', () => {
+  handleClick(addButton, target => {
+    target.classList.remove('visible')
+  })
 })
