@@ -44,7 +44,7 @@ app.use((req, res, next) => {
   }
   const user = req.session?.user
   if (
-    (urlParts[2] == 'admin' && user?.permission != 'admin') ||
+    (urlParts[2] == 'admin' && !['admin', 'employee'].includes(user?.permission)) ||
     (urlParts[2] == 'standard' && user?.permission != 'standard')
   ) {
     return res.status(401).send({
