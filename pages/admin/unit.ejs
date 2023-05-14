@@ -36,44 +36,58 @@
       }) %>
     </div>
     <div id="add-form" class="form-wrapper">
-      <div class="form">
+      <div class="alert alert-danger" id="alert-danger">
+        <div class="message"></div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <div class="alert alert-success" id="alert-success">
+        <div class="message"></div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <form class="form" id="form">
         <div class="header">
           <div class="title">
             <p class="highlight">
               Adicionar Unidade
             </p>
           </div>
-          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form" type="button"></button>
         </div>
         <div class="body">
-          <form action="./" id="form">
-            <div class="input-wrapper">
-              <label for="type">Tipo*</label>
-              <select name="type" id="type">
-                <option value="">Jazigo</option>
-                <option value="">Túmulo</option>
-              </select>
-            </div>
-            <div class="input-wrapper">
-              <label for="address">Localização*</label>
-              <input type="text" name="address" id="address">
-            </div>
-            <div class="input-wrapper">
-              <label for="post">Estado</label>
-              <select name="post" id="post">
-                <option value="">Ocupado</option>
-                <option value="">Livre</option>
-              </select>
-            </div>
-          </form>
+          <div class="input-wrapper">
+            <label for="type">Tipo*</label>
+            <select name="type" id="type">
+              <option value="sepultura">Sepultura</option>
+              <option value="jazigo">Jazigo</option>
+            </select>
+          </div>
+          <div class="input-wrapper">
+            <label for="location">Localização*</label>
+            <input type="text" name="location" id="location">
+          </div>
+          <div class="input-wrapper">
+            <label for="state">Estado</label>
+            <select name="state" id="state">
+              <option value="0">Livre</option>
+              <option value="1">Ocupado</option>
+            </select>
+          </div>
         </div>
         <div class="footer">
-          <button class="save">
+          <button class="save" type="submit">
             Salvar
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </main>
+  <script src="../../assets/scripts/animations/alert.js"></script>
+  <script src="../../assets/scripts/services/error-messages.js"></script>
+  <script src="../../assets/scripts/services/request.js"></script>
+  <script src="../../assets/scripts/services/register/unit.js"></script>
 </body>
 </html>

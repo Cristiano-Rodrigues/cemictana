@@ -36,46 +36,60 @@
       }) %>
     </div>
     <div id="add-form" class="form-wrapper">
-      <div class="form">
+      <div class="alert alert-danger" id="alert-danger">
+        <div class="message"></div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <div class="alert alert-success" id="alert-success">
+        <div class="message"></div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <form class="form" id="form">
         <div class="header">
           <div class="title">
             <p class="highlight">
               Adicionar Defunto
             </p>
           </div>
-          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form" type="button"></button>
         </div>
         <div class="body">
-          <form action="./" id="form">
-            <div class="input-wrapper">
-              <label for="name">Nome completo*</label>
-              <input type="text" name="name" id="name">
-            </div>
-            <div class="input-wrapper">
-              <label for="identification">Identificação*</label>
-              <input type="text" name="identification" id="identification">
-            </div>
-            <div class="input-wrapper">
-              <label for="bornDate">Data de nascimento*</label>
-              <input type="date" name="bornDate" id="bornDate">
-            </div>
-            <div class="input-wrapper">
-              <label for="deathDate">Data de morte*</label>
-              <input type="date" name="deathDate" id="deathDate">
-            </div>
-            <div class="input-wrapper">
-              <label for="deathCause">Causa da morte</label>
-              <input type="text" name="deathCause" id="deathCause">
-            </div>
-          </form>
+          <div class="input-wrapper">
+            <label for="name">Nome completo*</label>
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="input-wrapper">
+            <label for="identification">Identificação*</label>
+            <input type="text" name="identification" id="identification">
+          </div>
+          <div class="input-wrapper">
+            <label for="bornDate">Data de nascimento*</label>
+            <input type="date" name="bornDate" id="bornDate">
+          </div>
+          <div class="input-wrapper">
+            <label for="deathDate">Data de morte*</label>
+            <input type="date" name="deathDate" id="deathDate">
+          </div>
+          <div class="input-wrapper">
+            <label for="deathCause">Causa da morte</label>
+            <input type="text" name="deathCause" id="deathCause">
+          </div>
         </div>
         <div class="footer">
-          <button class="save">
+          <button class="save" type="submit">
             Salvar
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </main>
+  <script src="../../assets/scripts/animations/alert.js"></script>
+  <script src="../../assets/scripts/services/error-messages.js"></script>
+  <script src="../../assets/scripts/services/request.js"></script>
+  <script src="../../assets/scripts/services/register/defunct.js"></script>
 </body>
 </html>
