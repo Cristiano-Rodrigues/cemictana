@@ -35,6 +35,45 @@
         data: []
       }) %>
     </div>
+    <div id="add-form" class="form-wrapper">
+      <div class="form">
+        <div class="header">
+          <div class="title">
+            <p class="highlight">
+              Adicionar Unidade
+            </p>
+          </div>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+        </div>
+        <div class="body">
+          <form action="./" id="form">
+            <div class="input-wrapper">
+              <label for="type">Tipo*</label>
+              <select name="type" id="type">
+                <option value="">Jazigo</option>
+                <option value="">Túmulo</option>
+              </select>
+            </div>
+            <div class="input-wrapper">
+              <label for="address">Localização*</label>
+              <input type="text" name="address" id="address">
+            </div>
+            <div class="input-wrapper">
+              <label for="post">Estado</label>
+              <select name="post" id="post">
+                <option value="">Ocupado</option>
+                <option value="">Livre</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <button class="save">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>

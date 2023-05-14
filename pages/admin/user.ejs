@@ -35,6 +35,46 @@
         data: []
       }) %>
     </div>
+    <div id="add-form" class="form-wrapper">
+      <div class="form">
+        <div class="header">
+          <div class="title">
+            <p class="highlight">
+              Adicionar Usuário
+            </p>
+          </div>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+        </div>
+        <div class="body">
+          <form action="./" id="form">
+            <div class="input-wrapper">
+              <label for="name">Nome completo*</label>
+              <input type="text" name="name" id="name">
+            </div>
+            <div class="input-wrapper">
+              <label for="email">Email*</label>
+              <input type="email" name="email" id="email">
+            </div>
+            <div class="input-wrapper">
+              <label for="password">Password*</label>
+              <input type="password" name="password" id="password">
+            </div>
+            <div class="input-wrapper">
+              <label for="permission">Permissão*</label>
+              <select name="permission" id="permission">
+                <option value="">Administrador</option>
+                <option value="">Funcionário</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <button class="save">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>

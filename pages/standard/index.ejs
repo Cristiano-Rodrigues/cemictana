@@ -41,6 +41,45 @@
         data: []
       }) %>
     </div>
+    <div id="add-form" class="form-wrapper">
+      <div class="form">
+        <div class="header">
+          <div class="title">
+            <p class="highlight">
+              Criar Agendamento
+            </p>
+          </div>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+        </div>
+        <div class="body">
+          <form action="./" id="form">
+            <div class="input-wrapper">
+              <label for="type">Tipo de agendamento*</label>
+              <select name="type" id="type">
+                <option value="">Enterro</option>
+              </select>
+            </div>
+            <div class="input-wrapper">
+              <label for="schedulingDate">Data*</label>
+              <input type="date" name="schedulingDate" id="schedulingDate">
+            </div>
+            <div class="input-wrapper">
+              <label for="defunct">Defunto*</label>
+              <select name="defunct" id="defunct"></select>
+            </div>
+            <div class="input-wrapper">
+              <label for="unit">Unidade*</label>
+              <select name="unit" id="unit"></select>
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <button class="save">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>

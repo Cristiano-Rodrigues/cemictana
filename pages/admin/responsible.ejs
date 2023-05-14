@@ -35,6 +35,43 @@
         data: []
       }) %>
     </div>
+    <div id="add-form" class="form-wrapper">
+      <div class="form">
+        <div class="header">
+          <div class="title">
+            <p class="highlight">
+              Adicionar Responsável
+            </p>
+          </div>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+        </div>
+        <div class="body">
+          <form action="./" id="form">
+            <div class="input-wrapper">
+              <label for="name">Nome completo*</label>
+              <input type="text" name="name" id="name">
+            </div>
+            <div class="input-wrapper">
+              <label for="identification">Identificação*</label>
+              <input type="text" name="identification" id="identification">
+            </div>
+            <div class="input-wrapper">
+              <label for="bornDate">Data de nascimento</label>
+              <input type="date" name="bornDate" id="bornDate">
+            </div>
+            <div class="input-wrapper">
+              <label for="address">Endereço</label>
+              <input type="text" name="address" id="address">
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <button class="save">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>
