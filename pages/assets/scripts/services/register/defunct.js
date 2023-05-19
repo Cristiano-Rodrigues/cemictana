@@ -12,6 +12,7 @@ form.addEventListener('submit', async evt => {
       body: JSON.stringify({
         name: form.elements.name.value,
         identification: form.elements.identification.value,
+        responsible: form.elements.responsible.value,
         bornDate: form.elements.bornDate.value,
         deathDate: form.elements.deathDate.value,
         deathCause: form.elements.deathCause.value,
