@@ -10,10 +10,18 @@ const DefunctRepositoryStub = class {
   }
   async update () {}
 }
+const ResponsibleRepositoryStub = class {
+  async getById (id) {
+    return {
+      id
+    }
+  }
+}
 
 const updateDefunctController = new UpdateDefunctController(
   ConnectionStub,
-  DefunctRepositoryStub
+  DefunctRepositoryStub,
+  ResponsibleRepositoryStub
 )
 
 const tomorrow = () => {
@@ -29,6 +37,7 @@ describe('UpdateDefunctController', () => {
         id: null,
         name: 'any_name',
         identification: 'any_identification',
+        responsible: 1,
         bornDate: '2023-04-06',
         deathDate: '2023-04-06'
       }
@@ -43,6 +52,7 @@ describe('UpdateDefunctController', () => {
         id: 1,
         name: 'any_name',
         identification: 'any_identification',
+        responsible: 1,
         bornDate: tomorrow(),
         deathDate: tomorrow()
       }
@@ -53,7 +63,7 @@ describe('UpdateDefunctController', () => {
     })
   })
 
-  test('Should return an error object if responsible already exists', async () => {
+  test('Should return an error object if defunct already exists', async () => {
     const DefunctRepositoryStub = class {
       getByIdentification (identification) {
         return {
@@ -64,7 +74,8 @@ describe('UpdateDefunctController', () => {
     }
     const updateDefunctController = new UpdateDefunctController(
       ConnectionStub,
-      DefunctRepositoryStub
+      DefunctRepositoryStub,
+      ResponsibleRepositoryStub
     )
 
     const result = await updateDefunctController.handle({
@@ -72,12 +83,41 @@ describe('UpdateDefunctController', () => {
         id: 1,
         name: 'any_name',
         identification: 'any_identification',
+        responsible: 1,
         bornDate: '2023-04-06',
         deathDate: '2023-04-06'
       }
     })
     expect(result.code).toBe(400)
     expect((result.error instanceof DuplicatedData)).toBe(true)
+  })
+
+  test('Should return an error object if responsible not exists', async () => {
+    const ResponsibleRepositoryStub = class {
+      getById (id) {
+        return null
+      }
+    }
+    const updateDefunctController = new UpdateDefunctController(
+      ConnectionStub,
+      DefunctRepositoryStub,
+      ResponsibleRepositoryStub
+    )
+
+    const result = await updateDefunctController.handle({
+      body: {
+        id: 1,
+        name: 'any_name',
+        identification: 'any_identification',
+        responsible: 1,
+        bornDate: '2023-04-06',
+        deathDate: '2023-04-06'
+      }
+    })
+    expect(result).toEqual({
+      code: 400,
+      error: new InvalidEntry('responsible')
+    })
   })
 
   test('Should return an error object if any internal server error', async () => {
@@ -88,7 +128,8 @@ describe('UpdateDefunctController', () => {
     }
     const updateDefunctController = new UpdateDefunctController(
       ConnectionStub,
-      DefunctRepositoryStub
+      DefunctRepositoryStub,
+      ResponsibleRepositoryStub
     )
 
     const result = await updateDefunctController.handle({
@@ -96,6 +137,7 @@ describe('UpdateDefunctController', () => {
         id: 1,
         name: 'any_name',
         identification: 'any_identification',
+        responsible: 1,
         bornDate: '2023-04-06',
         deathDate: '2023-04-06'
       }
@@ -112,6 +154,7 @@ describe('UpdateDefunctController', () => {
         id: 1,
         name: 'any_name',
         identification: 'any_identification',
+        responsible: 1,
         bornDate: '2023-04-06',
         deathDate: '2023-04-06',
         deathCause: 'any_cause'

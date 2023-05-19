@@ -7,11 +7,6 @@ const ConnectionStub = class {
 const SchedulingRepositoryStub = class {
   async create () {}
 }
-const ResponsibleRepositoryStub = class {
-  async getById(id) {
-    return id
-  }
-}
 const DefunctRepositoryStub = class {
   async getById(id) {
     return id
@@ -25,7 +20,6 @@ const UnitRepositoryStub = class {
 const createSchedulingController = new CreateSchedulingController(
   ConnectionStub,
   SchedulingRepositoryStub,
-  ResponsibleRepositoryStub,
   DefunctRepositoryStub,
   UnitRepositoryStub
 )
@@ -42,7 +36,6 @@ describe('CreateSchedulingController', () => {
       body: {
         type: null,
         schedulingDate: '2023-04-06',
-        responsible: 1,
         defunct: 1,
         unit: 1
       }
@@ -56,7 +49,6 @@ describe('CreateSchedulingController', () => {
       body: {
         type: 'any_type',
         schedulingDate: '2023-04-06',
-        responsible: 1,
         defunct: 1,
         unit: 1
       }
@@ -68,7 +60,7 @@ describe('CreateSchedulingController', () => {
   })
 
   test('Should return an error object if invalid id is given for responsible, defunct or unit', async () => {
-    const ResponsibleRepositoryStub = class {
+    const DefunctRepositoryStub = class {
       getById (_) {
         return null
       }
@@ -76,7 +68,6 @@ describe('CreateSchedulingController', () => {
     const createSchedulingController = new CreateSchedulingController(
       ConnectionStub,
       SchedulingRepositoryStub,
-      ResponsibleRepositoryStub,
       DefunctRepositoryStub,
       UnitRepositoryStub
     )
@@ -85,8 +76,7 @@ describe('CreateSchedulingController', () => {
       body: {
         type: 'any_type',
         schedulingDate: tomorrow(),
-        responsible: 'non-existing-id',
-        defunct: 1,
+        defunct: null,
         unit: 1
       }
     })
@@ -95,7 +85,7 @@ describe('CreateSchedulingController', () => {
   })
 
   test('Should return an error object if any internal server error', async () => {
-    const ResponsibleRepositoryStub = class {
+    const DefunctRepositoryStub = class {
       getById (_) {
         throw new Error('any_error')
       }
@@ -103,7 +93,6 @@ describe('CreateSchedulingController', () => {
     const createSchedulingController = new CreateSchedulingController(
       ConnectionStub,
       SchedulingRepositoryStub,
-      ResponsibleRepositoryStub,
       DefunctRepositoryStub,
       UnitRepositoryStub
     )
@@ -112,7 +101,6 @@ describe('CreateSchedulingController', () => {
       body: {
         type: 'any_type',
         schedulingDate: tomorrow(),
-        responsible: 1,
         defunct: 1,
         unit: 1
       }
@@ -128,7 +116,6 @@ describe('CreateSchedulingController', () => {
       body: {
         type: 'any_type',
         schedulingDate: tomorrow(),
-        responsible: 1,
         defunct: 1,
         unit: 1
       }

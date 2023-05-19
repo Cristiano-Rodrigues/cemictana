@@ -4,14 +4,12 @@ export class UpdateSchedulingController {
   constructor (
     Connection,
     SchedulingRepository,
-    ResponsibleRepository,
     DefunctRepository,
     UnitRepository,
     EmployeeRepository
   ) {
     this.Connection = Connection
     this.SchedulingRepository = SchedulingRepository
-    this.ResponsibleRepository = ResponsibleRepository
     this.DefunctRepository = DefunctRepository
     this.UnitRepository = UnitRepository
     this.EmployeeRepository = EmployeeRepository
@@ -22,19 +20,18 @@ export class UpdateSchedulingController {
       id,
       type,
       schedulingDate,
-      responsible,
       defunct,
       employee,
       unit
     } = req.body
 
-    const anyNullValue = [id, type, schedulingDate, responsible, defunct, employee, unit]
+    const anyNullValue = [id, type, schedulingDate, defunct, employee, unit]
       .some(field => field == null)
 
     if ( anyNullValue ) {
       return {
         code: 400,
-        error: new InvalidEntry('type, schedulingDate, responsible, defunct, employee or unit')
+        error: new InvalidEntry('type, schedulingDate, defunct, employee or unit')
       }
     }
 
@@ -49,13 +46,11 @@ export class UpdateSchedulingController {
     try {
       const conn = new this.Connection()
       const schedulingRepository = new this.SchedulingRepository(conn)
-      const responsibleRepository = new this.ResponsibleRepository(conn)
       const defunctRepository = new this.DefunctRepository(conn)
       const employeeRepository = new this.EmployeeRepository(conn)
       const unitRepository = new this.UnitRepository(conn)
 
       const exist = !!(
-        await responsibleRepository.getById(responsible) &&
         await defunctRepository.getById(defunct) &&
         await employeeRepository.getById(employee) &&
         await unitRepository.getById(unit)
@@ -64,14 +59,13 @@ export class UpdateSchedulingController {
       if ( !exist ) {
         return {
           code: 400,
-          error: new InvalidEntry('responsible, defunct, employee or unit')
+          error: new InvalidEntry('defunct, employee or unit')
         }
       }
 
       await schedulingRepository.update(id, {
         type,
         schedulingDate,
-        responsible,
         defunct,
         employee,
         unit

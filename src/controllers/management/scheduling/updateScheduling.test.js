@@ -7,11 +7,6 @@ const ConnectionStub = class {
 const SchedulingRepositoryStub = class {
   async update () {}
 }
-const ResponsibleRepositoryStub = class {
-  async getById (id) {
-    return { id }
-  }
-}
 const DefunctRepositoryStub = class {
   async getById (id) {
     return { id }
@@ -31,7 +26,6 @@ const EmployeeRepositoryStub = class {
 const updateSchedulingController = new UpdateSchedulingController(
   ConnectionStub,
   SchedulingRepositoryStub,
-  ResponsibleRepositoryStub,
   DefunctRepositoryStub,
   UnitRepositoryStub,
   EmployeeRepositoryStub
@@ -50,7 +44,6 @@ describe('UpdateSchedulingController', () => {
         id: null,
         type: 'any_type',
         schedulingDate: '2023-04-06',
-        responsible: 1,
         defunct: 1,
         employee: 1,
         unit: 1
@@ -66,7 +59,6 @@ describe('UpdateSchedulingController', () => {
         id: 1,
         type: 'any_type',
         schedulingDate: '2023-04-06',
-        responsible: 1,
         defunct: 1,
         employee: 1,
         unit: 1
@@ -78,8 +70,8 @@ describe('UpdateSchedulingController', () => {
     })
   })
 
-  test('Should return an error object if invalid id is given for responsible, defunct, employee or unit', async () => {
-    const ResponsibleRepositoryStub = class {
+  test('Should return an error object if invalid id is given for defunct, employee or unit', async () => {
+    const DefunctRepositoryStub = class {
       getById (_) {
         return null
       }
@@ -87,7 +79,6 @@ describe('UpdateSchedulingController', () => {
     const updateSchedulingController = new UpdateSchedulingController(
       ConnectionStub,
       SchedulingRepositoryStub,
-      ResponsibleRepositoryStub,
       DefunctRepositoryStub,
       UnitRepositoryStub,
       EmployeeRepositoryStub
@@ -98,8 +89,7 @@ describe('UpdateSchedulingController', () => {
         id: 1,
         type: 'any_type',
         schedulingDate: tomorrow(),
-        responsible: 'non-existing-id',
-        defunct: 1,
+        defunct: null,
         employee: 1,
         unit: 1
       }
@@ -109,7 +99,7 @@ describe('UpdateSchedulingController', () => {
   })
 
   test('Should return an error object if any internal server error', async () => {
-    const ResponsibleRepositoryStub = class {
+    const DefunctRepositoryStub = class {
       getById (_) {
         throw new Error('any_error')
       }
@@ -117,7 +107,6 @@ describe('UpdateSchedulingController', () => {
     const updateSchedulingController = new UpdateSchedulingController(
       ConnectionStub,
       SchedulingRepositoryStub,
-      ResponsibleRepositoryStub,
       DefunctRepositoryStub,
       UnitRepositoryStub,
       EmployeeRepositoryStub
@@ -128,7 +117,6 @@ describe('UpdateSchedulingController', () => {
         id: 1,
         type: 'any_type',
         schedulingDate: tomorrow(),
-        responsible: 1,
         defunct: 1,
         employee: 1,
         unit: 1
@@ -146,7 +134,6 @@ describe('UpdateSchedulingController', () => {
         id: 1,
         type: 'any_type',
         schedulingDate: tomorrow(),
-        responsible: 1,
         defunct: 1,
         employee: 1,
         unit: 1

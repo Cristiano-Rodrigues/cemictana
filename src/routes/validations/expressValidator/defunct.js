@@ -7,6 +7,7 @@ export const searchDefunctNameValidation = [
 export const createDefunctValidation = [
   body('name').notEmpty().isString(),
   body('identification').notEmpty().isString(),
+  body('responsible').notEmpty().isNumeric(),
   body('bornDate').isDate({
     format: 'YYYY-MM-DD',
     strictMode: true
@@ -22,6 +23,7 @@ export const updateDefunctValidation = [
   body('id').notEmpty().isNumeric(),
   body('name').notEmpty().isString(),
   body('identification').notEmpty().isString(),
+  body('responsible').notEmpty().isNumeric(),
   body('bornDate').isDate({
     format: 'YYYY-MM-DD',
     strictMode: true

@@ -14,7 +14,6 @@ import {
   Connection,
   DefunctRepository,
   EmployeeRepository,
-  ResponsibleRepository,
   SchedulingRepository,
   UnitRepository
 } from '../repositories'
@@ -25,7 +24,6 @@ export default router => {
   const params = [
     Connection,
     SchedulingRepository,
-    ResponsibleRepository,
     DefunctRepository,
     UnitRepository,
     EmployeeRepository
