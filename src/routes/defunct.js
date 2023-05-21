@@ -12,14 +12,14 @@ import {
   updateDefunctValidation
 } from './validations/expressValidator'
 import { JWTAuthentication, Validation } from '../middlewares'
-import { Connection, DefunctRepository, ResponsibleRepository } from '../repositories'
+import { Connection, DefunctRepository, UserRepository } from '../repositories'
 import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
 
 export default router => {
   const params = [
     Connection,
     DefunctRepository,
-    ResponsibleRepository
+    UserRepository
   ]
 
   const createDefunctController = new CreateDefunctController(...params)

@@ -4,11 +4,11 @@ export class CreateDefunctController {
   constructor (
     Connection,
     DefunctRepository,
-    ResponsibleRepository
+    UserRepository
   ) {
     this.Connection = Connection
     this.DefunctRepository = DefunctRepository
-    this.ResponsibleRepository = ResponsibleRepository
+    this.UserRepository = UserRepository
   }
 
   async handle (req) {
@@ -45,7 +45,7 @@ export class CreateDefunctController {
     try {
       const conn = new this.Connection()
       const defunctRepository = new this.DefunctRepository(conn)
-      const responsibleRepository = new this.ResponsibleRepository(conn)
+      const userRepository = new this.UserRepository(conn)
 
       const alreadyExists = await defunctRepository.getByIdentification(identification)
 
@@ -56,7 +56,7 @@ export class CreateDefunctController {
         }
       }
 
-      const notExists = await responsibleRepository.getById(responsible)
+      const notExists = await userRepository.getById(responsible)
 
       if ( !notExists ) {
         return {

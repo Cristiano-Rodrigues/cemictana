@@ -10,7 +10,7 @@ const DefunctRepositoryStub = class {
   }
   async create () {}
 }
-const ResponsibleRepositoryStub = class {
+const UserRepository = class {
   async getById (id) {
     return {
       id
@@ -21,7 +21,7 @@ const ResponsibleRepositoryStub = class {
 const createDefunctController = new CreateDefunctController(
   ConnectionStub,
   DefunctRepositoryStub,
-  ResponsibleRepositoryStub
+  UserRepository
 )
 
 const tomorrow = () => {
@@ -72,7 +72,7 @@ describe('CreateDefunctController', () => {
     const createDefunctController = new CreateDefunctController(
       ConnectionStub,
       DefunctRepositoryStub,
-      ResponsibleRepositoryStub
+      UserRepository
     )
 
     const result = await createDefunctController.handle({
@@ -89,7 +89,7 @@ describe('CreateDefunctController', () => {
   })
 
   test('Should return an error object if responsible not exists', async () => {
-    const ResponsibleRepositoryStub = class {
+    const UserRepository = class {
       getById (id) {
         return null
       }
@@ -97,7 +97,7 @@ describe('CreateDefunctController', () => {
     const createDefunctController = new CreateDefunctController(
       ConnectionStub,
       DefunctRepositoryStub,
-      ResponsibleRepositoryStub
+      UserRepository
     )
 
     const result = await createDefunctController.handle({
@@ -124,7 +124,7 @@ describe('CreateDefunctController', () => {
     const createDefunctController = new CreateDefunctController(
       ConnectionStub,
       DefunctRepositoryStub,
-      ResponsibleRepositoryStub
+      UserRepository
     )
 
     const result = await createDefunctController.handle({
