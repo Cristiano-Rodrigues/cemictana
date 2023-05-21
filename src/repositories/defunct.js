@@ -45,6 +45,14 @@ export class DefunctRepository {
     return (await this.query(sql.query, sql.values))[0]
   }
 
+  async getByUser (user) {
+    const sql = {
+      query: 'SELECT * FROM defunct WHERE responsible = ?',
+      values: [user]
+    }
+    return await this.query(sql.query, sql.values)
+  }
+
   async getByIdentification (identification) {
     const sql = {
       query: 'SELECT * FROM defunct WHERE identification=? LIMIT 1',

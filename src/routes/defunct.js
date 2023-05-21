@@ -1,6 +1,7 @@
 import {
   CreateDefunctController,
   GetDefunctsController,
+  GetDefunctsByUserController,
   SearchDefunctNameController,
   UpdateDefunctController,
   DeleteDefunctController
@@ -19,11 +20,13 @@ export default router => {
   const params = [
     Connection,
     DefunctRepository,
-    UserRepository
+    UserRepository,
+    JWTHandler
   ]
 
   const createDefunctController = new CreateDefunctController(...params)
   const getDefunctsController = new GetDefunctsController(...params)
+  const getDefunctsByUserController = new GetDefunctsByUserController(...params)
   const searchDefunctNameController = new SearchDefunctNameController(...params)
   const updateDefunctController = new UpdateDefunctController(...params)
   const deleteDefunctController = new DeleteDefunctController(...params)
@@ -46,6 +49,12 @@ export default router => {
     '/defunct',
     adaptMiddleware(tokenAuth),
     adaptController(getDefunctsController)
+  )
+
+  router.get(
+    '/defunct/responsible',
+    adaptMiddleware(tokenAuth),
+    adaptController(getDefunctsByUserController)
   )
 
   router.get(
