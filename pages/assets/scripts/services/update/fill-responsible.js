@@ -17,9 +17,9 @@ getResponsibles().then(results => {
   }
 })
 
-function createOption ({ id, name }) {
+function createOption ({ name, user }) {
   const option = document.createElement('option')
-  option.value = id
+  option.value = user
   option.innerText = name
   return option
 }
