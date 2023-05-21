@@ -66,7 +66,6 @@ export class CreateSchedulingController {
 
       conn.close()
     } catch (error) {
-      console.log(error)
       return {
         code: 500,
         error: new ServerError()

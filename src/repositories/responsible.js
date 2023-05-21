@@ -4,12 +4,12 @@ export class ResponsibleRepository {
   }
 
   async create ({
-    name, identification, bornDate, address
+    name, identification, bornDate, address, user
   }) {
     const sql = {
-      query: 'INSERT INTO responsible VALUES (default, ?, ?, ?, ?); \
+      query: 'INSERT INTO responsible VALUES (default, ?, ?, ?, ?, ?); \
         \ SELECT LAST_INSERT_ID();',
-      values: [name, identification, bornDate, address]
+      values: [name, identification, bornDate, address, user]
     }
     await this.query(sql.query, sql.values)
   }

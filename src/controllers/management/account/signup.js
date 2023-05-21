@@ -21,7 +21,9 @@ export class SignUpController {
       name,
       identification,
       email,
-      password
+      password,
+      bornDate,
+      address
     } = req.body
 
     const anyNullValue = [name, identification, email, password].some(field => field == null)
@@ -60,20 +62,23 @@ export class SignUpController {
       const hash = this.hasher.hash(password, saltKey)
       const code = generateRandomCode({ min: 100_000, max: 1_000_000 })
 
-      await sendActivationCode(email, code, this.mailer)
+      // await sendActivationCode(email, code, this.mailer)
 
-      await userRepository.create({
+      const result = await userRepository.create({
         name,
         email,
         password: hash,
-        permission: 'standard',
+        permission: 'padrão',
         state: 0,
         code
       })
 
       await responsibleRepository.create({
         name,
-        identification
+        identification,
+        bornDate: bornDate,
+        address: address,
+        user: result.insertId
       })
 
       conn.close()

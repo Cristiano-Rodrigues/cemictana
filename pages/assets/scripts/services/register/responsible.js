@@ -7,17 +7,17 @@ form.addEventListener('submit', async evt => {
   evt.preventDefault()
   try {
     const response = await request({
-      url: 'http://localhost:8080/api/v1/responsible',
+      url: 'http://localhost:8080/api/v1/signup',
       method: 'POST',
       body: JSON.stringify({
         name: form.elements.name.value,
         identification: form.elements.identification.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
         bornDate: form.elements.bornDate.value,
-        address: form.elements.address.value,
-        token
+        address: form.elements.address.value
       })
     })
-    console.log(response)
     
     if (response.code != 201 || !response.success) {
       alertDanger.querySelector('.message').innerText = mapError(response.error.name)

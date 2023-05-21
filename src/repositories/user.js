@@ -11,7 +11,7 @@ export class UserRepository {
         \ SELECT LAST_INSERT_ID();',
       values: [name, email, password, permission, state, code]
     }
-    await this.query(sql.query, sql.values)
+    return (await this.query(sql.query, sql.values))[0]
   }
 
   async get () {

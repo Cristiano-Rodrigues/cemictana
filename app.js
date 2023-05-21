@@ -44,8 +44,8 @@ app.use((req, res, next) => {
   }
   const user = req.session?.user
   if (
-    (urlParts[2] == 'admin' && !['admin', 'employee'].includes(user?.permission)) ||
-    (urlParts[2] == 'standard' && user?.permission != 'standard')
+    (urlParts[2] == 'admin' && !['admin', 'funcionário'].includes(user?.permission)) ||
+    (urlParts[2] == 'standard' && user?.permission != 'padrão')
   ) {
     return res.status(401).send({
       error: new Unauthorized()

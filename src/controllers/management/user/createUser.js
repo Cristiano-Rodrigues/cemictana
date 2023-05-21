@@ -54,7 +54,7 @@ export class CreateUserController {
       const hash = this.hasher.hash(password, saltKey)
       const code = generateRandomCode({ min: 100_000, max: 1_000_000 })
 
-      await sendActivationCode(email, code, this.mailer)
+      // await sendActivationCode(email, code, this.mailer)
 
       const user = {
         name,

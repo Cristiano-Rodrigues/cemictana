@@ -1,5 +1,5 @@
 import { DuplicatedData, InvalidEntry, ServerError } from '../../errors'
-import { SignUpController } from './signUp'
+import { SignUpController } from './signup'
 
 class ConnectionStub {
   close () {}
@@ -8,7 +8,11 @@ class UserRepositoryStub {
   async getByEmail (email) {
     return null
   }
-  async create (user) {}
+  async create (user) {
+    return {
+      insertId: 'any_insert_id'
+    }
+  }
 }
 class ResponsibleRepositoryStub {
   async getByIdentification (identification) {
@@ -113,7 +117,7 @@ describe('SignUpController', () => {
 
   test('Should return an error object if any error is thrown', async () => {
     class UserRepositoryStub {
-      async create (user) {
+      async getByEmail (email) {
         throw new Error('any_error')
       }
     }
