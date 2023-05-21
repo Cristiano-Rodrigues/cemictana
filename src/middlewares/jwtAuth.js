@@ -1,5 +1,5 @@
-import { Unauthorized } from './errors/unauthorized.js'
-import { getToken } from './helpers/jwt.js'
+import { Unauthorized } from './errors/unauthorized'
+import { getToken } from '../utils/jwt'
 
 const sendError = () => ({
   code: 401,
