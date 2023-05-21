@@ -20,6 +20,7 @@ form.addEventListener('submit', async evt => {
       return
     }
     localStorage.setItem('token', response.result.token)
+    localStorage.setItem('user', JSON.stringify(response.result.user))
     window.location.href = './standard/'
   } catch (error) {
     console.error(error)
