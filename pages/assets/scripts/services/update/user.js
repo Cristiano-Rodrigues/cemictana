@@ -11,7 +11,9 @@ async function getAllDefuncts () {
 }
 
 getAllDefuncts().then(results => {
-  fillDataTable (table, (results || []).map(result => ({
+  fillDataTable (table, (results || []).filter(result => (
+    result.permission != 'padrão'
+  )).map(result => ({
     nome: result.name,
     email: result.email,
     permissao: result.permission,
