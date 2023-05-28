@@ -4,6 +4,7 @@ const routes = [
   '/',
   '/login',
   '/signup',
+  '/admin/login',
 ]
 
 const registerRoute = (router, route) => {

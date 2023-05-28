@@ -1,3 +1,5 @@
+import { SessionAuthentication } from '../../middlewares'
+import { adaptMiddleware } from '../api/adapters'
 import { adaptController } from './adapters/express/controllerAdapter'
 
 const partialRoutes = [
@@ -8,6 +10,7 @@ const partialRoutes = [
 const registerRoute = (router, route) => {
   router.get(
     route,
+    adaptMiddleware(new SessionAuthentication(['padrão'])),
     adaptController(async req => {
       return {
         pageSrc: route.slice(1),
