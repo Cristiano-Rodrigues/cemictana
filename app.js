@@ -3,7 +3,6 @@ import session from 'express-session'
 import express from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
-import { Unauthorized } from './src/middlewares/errors/unauthorized'
 
 dotenv.config()
 
@@ -27,39 +26,15 @@ app.use(session({
   store: sessionStore,
   saveUninitialized: false,
   cookie: {
-    maxAge: 24 * 1000 * 60 * 60,
+    maxAge: 24 * 60 * 60 * 1000,
     secure: false
   }
 }))
 
-app.use(express.static(path.join(process.cwd(), '/pages')))
+app.use(express.static(path.join(process.cwd(), '/public')))
 
-app.set('views', path.join(process.cwd(), '/pages'))
+app.set('views', path.join(process.cwd(), '/views'))
 app.set('view engine', 'ejs')
-
-app.use((req, res, next) => {
-  const urlParts = req.url.split('/')
-  if (urlParts[1] != 'pages') {
-    return next()
-  }
-  const user = req.session?.user
-  if (
-    (urlParts[2] == 'admin' && !['admin', 'funcionário'].includes(user?.permission)) ||
-    (urlParts[2] == 'standard' && user?.permission != 'padrão')
-  ) {
-    return res.status(401).send({
-      error: new Unauthorized()
-    })
-  }
-
-  req.url = urlParts.slice(2).join('/')
-  res.render(req.url, { user }, (err, file) => {
-    if (err) {
-      return res.status(404).send()
-    }
-    res.send(file)
-  })
-})
 
 app.use((_, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -67,6 +42,27 @@ app.use((_, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
   next()
 })
+
+function getAPIRouteFiles () {
+  return [
+    'api/main',
+    'api/account',
+    'api/employee',
+    'api/responsible',
+    'api/defunct',
+    'api/scheduling',
+    'api/unit',
+    'api/user'
+  ]
+}
+
+function getPageRouteFiles () {
+  return [
+    'pages/admin',
+    'pages/public',
+    'pages/user'
+  ]
+}
 
 async function load (filename) {
   const src = './src/routes/' + filename
@@ -76,21 +72,22 @@ async function load (filename) {
   return exported(router)
 }
 
-function registerRoute(route) {
+function registerAPIRoute (route) {
   app.use('/api/v1', route)
 }
 
-Promise.all([
-  'main',
-  'account',
-  'employee',
-  'responsible',
-  'defunct',
-  'scheduling',
-  'unit',
-  'user'
-]
-.map(load))
-.then(result => result.forEach(registerRoute))
+function registerPageRoute (route) {
+  app.use('/app', route)
+}
+
+Promise.all(
+  getAPIRouteFiles().map(load)
+)
+.then(result => result.forEach(registerAPIRoute))
+
+Promise.all(
+  getPageRouteFiles().map(load)
+)
+.then(result => result.forEach(registerPageRoute))
 
 export default app
