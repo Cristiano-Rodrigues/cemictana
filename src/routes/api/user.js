@@ -3,16 +3,16 @@ import {
   GetUsersController,
   UpdateUserController,
   DeleteUserController
-} from '../controllers/management/user'
+} from '../../controllers/management/user'
 import {
   createUserValidation,
   deleteUserValidation,
   updateUserValidation
 } from './validations/expressValidator'
-import { Validation } from '../middlewares/validation'
-import { Connection, UserRepository } from '../repositories'
+import { Validation } from '../../middlewares/validation'
+import { Connection, UserRepository } from '../../repositories'
 import { adaptController, adaptMiddleware, Hasher, JWTHandler, Mailer, Validator } from './adapters'
-import { JWTAuthentication } from '../middlewares/jwtAuth'
+import { JWTAuthentication } from '../../middlewares/jwtAuth'
 
 export default router => {
   const params = [

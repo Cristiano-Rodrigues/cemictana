@@ -1,10 +1,10 @@
 import {
   GetResponsiblesController,
   UpdateResponsibleController
-} from '../controllers/management/responsible'
+} from '../../controllers/management/responsible'
 import { updateResponsibleValidation } from './validations/expressValidator'
-import { JWTAuthentication, Validation } from '../middlewares'
-import { Connection, ResponsibleRepository } from '../repositories'
+import { JWTAuthentication, Validation } from '../../middlewares'
+import { Connection, ResponsibleRepository } from '../../repositories'
 import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
 
 export default router => {

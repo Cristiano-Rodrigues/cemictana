@@ -3,8 +3,8 @@ import {
   GetSchedulingsController,
   UpdateSchedulingController,
   DeleteSchedulingController
-} from '../controllers/management/scheduling'
-import { Validation } from '../middlewares/validation'
+} from '../../controllers/management/scheduling'
+import { Validation } from '../../middlewares/validation'
 import {
   createSchedulingValidation,
   deleteSchedulingValidation,
@@ -16,9 +16,9 @@ import {
   EmployeeRepository,
   SchedulingRepository,
   UnitRepository
-} from '../repositories'
+} from '../../repositories'
 import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
-import { JWTAuthentication } from '../middlewares/jwtAuth'
+import { JWTAuthentication } from '../../middlewares/jwtAuth'
 
 export default router => {
   const params = [

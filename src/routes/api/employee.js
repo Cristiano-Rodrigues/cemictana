@@ -3,14 +3,14 @@ import {
   GetEmployeesController,
   UpdateEmployeeController,
   DeleteEmployeeController
-} from '../controllers/management/employee'
+} from '../../controllers/management/employee'
 import {
   createEmployeeValidation,
   deleteEmployeeValidation,
   updateEmployeeValidation
 } from './validations/expressValidator'
-import { JWTAuthentication, Validation } from '../middlewares'
-import { Connection, EmployeeRepository } from '../repositories'
+import { JWTAuthentication, Validation } from '../../middlewares'
+import { Connection, EmployeeRepository } from '../../repositories'
 import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
 
 export default router => {

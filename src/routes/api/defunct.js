@@ -5,15 +5,15 @@ import {
   SearchDefunctNameController,
   UpdateDefunctController,
   DeleteDefunctController
-} from '../controllers/management/defunct'
+} from '../../controllers/management/defunct'
 import {
   createDefunctValidation,
   deleteDefunctValidation,
   searchDefunctNameValidation,
   updateDefunctValidation
 } from './validations/expressValidator'
-import { JWTAuthentication, Validation } from '../middlewares'
-import { Connection, DefunctRepository, UserRepository } from '../repositories'
+import { JWTAuthentication, Validation } from '../../middlewares'
+import { Connection, DefunctRepository, UserRepository } from '../../repositories'
 import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
 
 export default router => {

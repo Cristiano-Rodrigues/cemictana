@@ -3,16 +3,16 @@ import {
   GetUnitsController,
   UpdateUnitController,
   DeleteUnitController
-} from '../controllers/management/unit/'
+} from '../../controllers/management/unit/'
 import {
   createUnitValidation,
   deleteUnitValidation,
   updateUnitValidation
 } from './validations/expressValidator'
-import { Validation } from '../middlewares/validation'
-import { Connection, UnitRepository } from '../repositories'
+import { Validation } from '../../middlewares/validation'
+import { Connection, UnitRepository } from '../../repositories'
 import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
-import { JWTAuthentication } from '../middlewares/jwtAuth'
+import { JWTAuthentication } from '../../middlewares/jwtAuth'
 
 export default router => {
   const params = [

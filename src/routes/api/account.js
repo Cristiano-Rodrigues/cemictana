@@ -1,11 +1,11 @@
-import { LoginController, SignUpController } from '../controllers/management/account'
+import { LoginController, SignUpController } from '../../controllers/management/account'
 import { loginValidation, signUpValidation } from './validations/expressValidator'
-import { Validation } from '../middlewares/validation'
+import { Validation } from '../../middlewares/validation'
 import {
   Connection, 
   ResponsibleRepository,
   UserRepository
-} from '../repositories'
+} from '../../repositories'
 import { adaptController, adaptMiddleware, Hasher, JWTHandler, Mailer, Validator } from './adapters'
 
 export default router => {
