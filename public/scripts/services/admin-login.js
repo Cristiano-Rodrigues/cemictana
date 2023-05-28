@@ -20,7 +20,7 @@ form.addEventListener('submit', async evt => {
       return
     }
     localStorage.setItem('token', response.result.token)
-    window.location.href = './admin/'
+    window.location.href = './'
   } catch (error) {
     console.error(error)
   }
