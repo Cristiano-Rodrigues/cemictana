@@ -32,8 +32,7 @@ async function searchUserInput (input) {
 }
 
 function showResults (results) {
-  const allResultsEl = document.querySelector('.all-results')
-  const cardsEl = allResultsEl.querySelector('.cards')
+  const cardsEl = document.querySelector('.cards')
 
   cardsEl.innerText = ''
   resultsCountEl.innerText = results.length
@@ -51,7 +50,7 @@ function createCard (result) {
     <div class="card">
       <i class="bx bx-expand-alt"></i>
       <div class="person-data">
-        <img src="../assets/images/profile-pq.png" alt="photo" class="photo">
+        <img src="/images/profile-pq.png" alt="photo" class="photo">
         <div class="name">${result.name}</div>
       </div>
       <div class="death-date"><strong>Data</strong>: ${date}</div>

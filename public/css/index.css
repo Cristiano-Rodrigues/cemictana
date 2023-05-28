@@ -29,7 +29,8 @@
 
 /* Searchbar */
 .searchbar {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   height: 65px;
   margin: 0 auto;
   border-radius: 5px;
@@ -83,7 +84,8 @@
 
 .title {
   display: flex;
-  align-items: center;
+  width: 100%;
+  max-width: 1290px;
 }
 
 .title .results-count {
@@ -126,6 +128,8 @@
 }
 
 .card .photo {
+  width: 70px;
+  height: 70px;
   margin-right: 10px;
 }
 
