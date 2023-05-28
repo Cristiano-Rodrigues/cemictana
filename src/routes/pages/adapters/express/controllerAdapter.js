@@ -8,7 +8,6 @@ export function adaptController(controller) {
     const { pageSrc, data } = await controller(req)
     res.render(pageSrc, data, (err, file) => {
       if (err) {
-        console.log(err)
         return res.status(error.code).send(error.message)
       }
       res.send(file)
