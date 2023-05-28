@@ -42,44 +42,58 @@
       }) %>
     </div>
     <div id="add-form" class="form-wrapper">
-      <div class="form">
+      <div class="alert alert-danger" id="alert-danger">
+        <div class="message"></div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <div class="alert alert-success" id="alert-success">
+        <div class="message"></div>
+        <button class="close-btn">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+      <form class="form" id="form">
         <div class="header">
           <div class="title">
             <p class="highlight">
               Criar Agendamento
             </p>
           </div>
-          <button class="close bx bx-x" id="close-btn" data-relto="add-form"></button>
+          <button class="close bx bx-x" id="close-btn" data-relto="add-form" type="button"></button>
         </div>
         <div class="body">
-          <form action="./" id="form">
-            <div class="input-wrapper">
-              <label for="type">Tipo de agendamento*</label>
-              <select name="type" id="type">
-                <option value="">Enterro</option>
-              </select>
-            </div>
-            <div class="input-wrapper">
-              <label for="schedulingDate">Data*</label>
-              <input type="date" name="schedulingDate" id="schedulingDate">
-            </div>
-            <div class="input-wrapper">
-              <label for="defunct">Defunto*</label>
-              <select name="defunct" id="defunct"></select>
-            </div>
-            <div class="input-wrapper">
-              <label for="unit">Unidade*</label>
-              <select name="unit" id="unit"></select>
-            </div>
-          </form>
+          <div class="input-wrapper">
+            <label for="type">Tipo de agendamento*</label>
+            <select name="type" id="type">
+              <option value="">Enterro</option>
+            </select>
+          </div>
+          <div class="input-wrapper">
+            <label for="schedulingDate">Data*</label>
+            <input type="date" name="schedulingDate" id="schedulingDate">
+          </div>
+          <div class="input-wrapper">
+            <label for="defunct">Defunto*</label>
+            <select name="defunct" id="defunct"></select>
+          </div>
+          <div class="input-wrapper">
+            <label for="unit">Unidade*</label>
+            <select name="unit" id="unit"></select>
+          </div>
         </div>
         <div class="footer">
           <button class="save">
             Salvar
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </main>
+  <script src="../../assets/scripts/animations/alert.js"></script>
+  <script src="../../assets/scripts/services/error-messages.js"></script>
+  <script src="../../assets/scripts/services/request.js"></script>
+  <script src="../../assets/scripts/services/update/scheduling.js"></script>
 </body>
 </html>
