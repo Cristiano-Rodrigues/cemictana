@@ -1,7 +1,0 @@
-export * from './defunct'
-export * from './employee'
-export * from './responsible'
-export * from './scheduling'
-export * from './unit'
-export * from './user'
-export * from './account'
