@@ -67,7 +67,9 @@
           <div class="input-wrapper">
             <label for="type">Tipo de agendamento*</label>
             <select name="type" id="type">
-              <option value="">Enterro</option>
+              <option value="sepultamento">Sepultamento</option>
+              <option value="exumação">Exumação</option>
+              <option value="translado">Translado</option>
             </select>
           </div>
           <div class="input-wrapper">
@@ -84,7 +86,7 @@
           </div>
         </div>
         <div class="footer">
-          <button class="save">
+          <button class="save" type="submit">
             Salvar
           </button>
         </div>
@@ -94,6 +96,9 @@
   <script src="/scripts/animations/alert.js"></script>
   <script src="/scripts/services/error-messages.js"></script>
   <script src="/scripts/services/request.js"></script>
+  <script src="/scripts/services/update/fill-defunct.js"></script>
+  <script src="/scripts/services/update/fill-unit.js"></script>
   <script src="/scripts/services/update/scheduling.js"></script>
+  <script src="/scripts/services/register/scheduling.js"></script>
 </body>
 </html>
