@@ -14,17 +14,17 @@
   <main>
     <section class="presentation">
       <div class="menu">
-        <a href="/pages/">
+        <a href="/app/">
           <img src="/images/logo.png" alt="logo" class="logo">
         </a>
         <% if (user) { %>
           <% if (user.permission == 'admin') { %>
             <div class="nav-links">
-              <a href="./admin/" class="option">Ir ao Painel Principal</a>
+              <a href="/app/admin/" class="option">Ir ao Painel Principal</a>
             </div>
           <% } else { %>
             <div class="nav-links">
-              <a href="./user/" class="option">Ir ao Painel Principal</a>
+              <a href="/app/user/" class="option">Ir ao Painel Principal</a>
             </div>
           <% } %>
         <% } else { %>

@@ -11,6 +11,9 @@ function fillDataTable (table, data) {
 
   fillHead(head, columns)
   fillBody(body, data)
+
+  const total = table.parentElement.querySelector('.total')
+  total.innerText = `${data.length} registo(s)`
 }
 
 function fillHead (head, columns) {

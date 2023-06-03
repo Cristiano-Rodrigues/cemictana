@@ -94,6 +94,7 @@ main {
   color: gray;
   border: 1px solid #F4F4F4;
   background-color: #F4F4F4;
+  overflow-y: auto;
 }
 
 .schedule-calendar .monthdays .monthday .event {

@@ -16,6 +16,7 @@ async function getAllScheduling () {
 
 function setup (baseDate) {
   const sameDate = (date, event) => (
+    date.getFullYear() == event.date.getFullYear() &&
     date.getMonth() == event.date.getMonth() &&
     date.getDate() == event.date.getDate()
   )
@@ -27,16 +28,14 @@ function setup (baseDate) {
   monthdays.innerText = ''
   for (let day = 0; day < 7; day++) {
     for (let week = 0; week < 6; week++) {
-      const events = schedules.filter(sameDate.bind(null, date))
       const element = renderDay(date.getDate())
       if (date.getMonth() === baseDate.getMonth()) {
         element.classList.add('current')
-        if (events.length > 0) {
-          events.forEach(event => {
-            element.append(renderEvent(event))
-          })
-        }
       }
+      const events = schedules.filter(sameDate.bind(null, date))
+      events.forEach(event => {
+        element.append(renderEvent(event))
+      })
       monthdays.append(element)
       date = date.next('date')
     }
@@ -62,6 +61,11 @@ function renderEvent (event) {
 
   eventEl.className = `event ${event.type}`
   eventEl.innerText = event.type
+
+  eventEl.addEventListener('click', () => {
+    openUpdateForm()
+    fullFillForm(event)
+  })
 
   return eventEl
 }
