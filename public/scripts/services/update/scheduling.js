@@ -1,6 +1,6 @@
 const table = document.getElementById('table')
 
-async function getAllDefuncts () {
+async function getAllScheduling () {
   const response = await request({
     url: 'http://localhost:8080/api/v1/scheduling',
     headers: {
@@ -10,7 +10,7 @@ async function getAllDefuncts () {
   return response.result
 }
 
-getAllDefuncts().then(results => {
+getAllScheduling().then(results => {
   fillDataTable (table, (results || []).map(result => ({
     tipo: result.type,
     data: result.schedulingDate,
