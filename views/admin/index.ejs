@@ -27,192 +27,53 @@
       <div class="calendar-wrapper">
         <div class="schedule-calendar" id="calendar">
           <div class="header">
-            <div class="left-button">
+            <div class="left-button" id="prev-month-main">
               <i class="bx bx-chevron-left"></i>
             </div>
             <div class="date">
               <div class="month">
-                Maio
+                <div id="month-value"></div>
                 <div class="controls">
                   <div class="up-button">
-                    <i class="bx bx-chevron-up"></i>
+                    <i class="bx bx-chevron-up" id="next-month"></i>
                   </div>
                   <div class="bottom-button">
-                    <i class="bx bx-chevron-down"></i>
+                    <i class="bx bx-chevron-down" id="prev-month"></i>
                   </div>
                 </div>
               </div>
               <div class="year">
-                2023
+                <div id="year-value"></div>
                 <div class="controls">
-                  <div class="up-button">
+                  <div class="up-button" id="next-year">
                     <i class="bx bx-chevron-up"></i>
                   </div>
                   <div class="bottom-button">
-                    <i class="bx bx-chevron-down"></i>
+                    <i class="bx bx-chevron-down" id="prev-year"></i>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="right-button">
+            <div class="right-button" id="next-month-main">
               <div class="bx bx-chevron-right"></div>
             </div>
           </div>
           <div class="days">
-            <div class="day">Domingo</div>
             <div class="day">Segunda</div>
             <div class="day">Terça</div>
             <div class="day">Quarta</div>
             <div class="day">Quinta</div>
             <div class="day">Sexta</div>
             <div class="day">Sábado</div>
+            <div class="day">Domingo</div>
           </div>
           <div class="monthdays">
-            <div class="monthday">
-              <div class="number">1</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday">
-              <div class="number">2</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">1</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">2</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">3</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">4</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">5</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">6</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">7</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">8</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">9</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">10</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">11</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">12</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">13</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">14</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">15</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">16</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">17</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">18</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">19</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">20</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">21</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">22</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">23</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">24</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">25</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">26</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">27</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">28</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">29</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">30</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday current">
-              <div class="number">31</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday">
-              <div class="number">1</div>
-              <div class="content"></div>
-            </div>
-            <div class="monthday">
-              <div class="number">2</div>
-              <div class="content"></div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
+  <script src="/scripts/calendar/ExtendedDate.js"></script>
   <script src="/scripts/calendar/index.js"></script>
 </body>
 </html>
