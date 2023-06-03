@@ -38,14 +38,20 @@ function renderDay (day) {
   return wrapperEl
 }
 
+function handleClick (action) {
+  baseDate = action(baseDate)
+  setup(baseDate)
+  updateDateElements(baseDate)
+}
+
 ;([
   document.getElementById('prev-month-main'),
   document.getElementById('prev-month')
 ]).forEach(button => {
   button.addEventListener('click', () => {
-    baseDate = baseDate.previous('month')
-    setup(baseDate)
-    updateDateElements(baseDate)
+    handleClick(baseDate => {
+      return baseDate.previous('month')
+    })
   })
 })
 
@@ -54,22 +60,22 @@ function renderDay (day) {
   document.getElementById('next-month')
 ]).forEach(button => {
   button.addEventListener('click', () => {
-    baseDate = baseDate.next('month')
-    setup(baseDate)
-    updateDateElements(baseDate)
+    handleClick(baseDate => {
+      return baseDate.next('month')
+    })
   })
 })
 
 document.getElementById('prev-year').addEventListener('click', () => {
-  baseDate = baseDate.previous('year')
-  setup(baseDate)
-  updateDateElements(baseDate)
+  handleClick(baseDate => {
+    return baseDate.previous('year')
+  })
 })
 
 document.getElementById('next-year').addEventListener('click', () => {
-  baseDate = baseDate.next('year')
-  setup(baseDate)
-  updateDateElements(baseDate)
+  handleClick(baseDate => {
+    return baseDate.next('year')
+  })
 })
 
 function updateDateElements (baseDate) {
