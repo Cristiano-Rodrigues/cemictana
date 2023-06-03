@@ -87,12 +87,34 @@ main {
 
 .schedule-calendar .monthdays .monthday {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   height: 100px;
   padding: 20px;
   color: gray;
   border: 1px solid #F4F4F4;
   background-color: #F4F4F4;
+}
+
+.schedule-calendar .monthdays .monthday .event {
+  width: fit-content;
+  padding: 5px 10px;
+  color: white;
+  text-transform: capitalize;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.schedule-calendar .monthdays .monthday .event.sepultamento {
+  background-color: red;
+}
+
+.schedule-calendar .monthdays .monthday .event.exumação {
+  background-color: gray;
+}
+
+.schedule-calendar .monthdays .monthday .event.translado {
+  background-color: green;
 }
 
 .schedule-calendar .monthdays .monthday.current {
