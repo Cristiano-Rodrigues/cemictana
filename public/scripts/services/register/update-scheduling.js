@@ -8,8 +8,9 @@ form.addEventListener('submit', async evt => {
   try {
     const response = await request({
       url: 'http://localhost:8080/api/v1/scheduling',
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify({
+        id: form.elements.id.value,
         type: form.elements.type.value,
         schedulingDate: form.elements.schedulingDate.value,
         defunct: form.elements.defunct.value,
@@ -19,7 +20,7 @@ form.addEventListener('submit', async evt => {
       })
     })
     
-    if (response.code != 201 || !response.success) {
+    if (response.code != 200 || !response.success) {
       alertDanger.querySelector('.message').innerText = mapError(response.error.name)
       alertSuccess.classList.remove('visible')
       alertDanger.classList.add('visible')
@@ -27,7 +28,7 @@ form.addEventListener('submit', async evt => {
     }
     alertDanger.classList.remove('visible')
     alertSuccess.classList.add('visible')
-    alertSuccess.querySelector('.message').innerText = 'Agendamento cadastrado'
+    alertSuccess.querySelector('.message').innerText = 'Agendamento alterado'
   } catch (error) {
     console.error(error)
   }

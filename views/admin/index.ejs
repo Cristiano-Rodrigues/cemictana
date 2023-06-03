@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/partials/topbar.css">
   <link rel="stylesheet" href="/css/partials/report.css">
   <link rel="stylesheet" href="/css/admin/index.css">
+  <link rel="stylesheet" href="/css/admin/template.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Dashboard</title>
 </head>
@@ -23,6 +24,59 @@
       }) %>
 
       <%- include('../partials/report') %>
+
+      <div id="update-form" class="form-wrapper">
+        <div class="alert alert-danger" id="alert-danger">
+          <div class="message"></div>
+          <button class="close-btn">
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <div class="alert alert-success" id="alert-success">
+          <div class="message"></div>
+          <button class="close-btn">
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <form class="form" id="form">
+          <div class="header">
+            <div class="title">
+              <p class="highlight">
+                Atualizar Agendamento
+              </p>
+            </div>
+            <button class="close bx bx-x" id="close-btn" data-relto="update-form" type="button"></button>
+          </div>
+          <div class="body">
+            <input name="id" readonly hidden/>
+            <div class="input-wrapper">
+              <label for="type">Tipo de agendamento</label>
+              <input type="text" name="type" id="type" readonly/>
+            </div>
+            <div class="input-wrapper">
+              <label for="employee">Funcionario Encarregado</label>
+              <select name="employee" id="employee"></select>
+            </div>
+            <div class="input-wrapper">
+              <label for="schedulingDate">Data</label>
+              <input type="date" name="schedulingDate" id="schedulingDate">
+            </div>
+            <div class="input-wrapper">
+              <label for="defunct">Defunto</label>
+              <select name="defunct" id="defunct"></select>
+            </div>
+            <div class="input-wrapper">
+              <label for="unit">Unidade</label>
+              <select name="unit" id="unit"></select>
+            </div>
+          </div>
+          <div class="footer">
+            <button class="save" type="submit">
+              Salvar
+            </button>
+          </div>
+        </form>
+      </div>
       
       <div class="calendar-wrapper">
         <div class="schedule-calendar" id="calendar">
@@ -73,6 +127,10 @@
       </div>
     </div>
   </main>
+  <script src="/scripts/animations/alert.js"></script>
+  <script src="/scripts/services/error-messages.js"></script>
+  <script src="/scripts/services/register/update-scheduling.js"></script>
+  <script src="/scripts/services/update/fill-employee.js"></script>
   <script src="/scripts/calendar/ExtendedDate.js"></script>
   <script src="/scripts/calendar/index.js"></script>
 </body>

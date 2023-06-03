@@ -1,5 +1,6 @@
 const calendar = document.getElementById('calendar')
 const monthdays = calendar.querySelector('.monthdays')
+const wrapper = document.getElementById('update-form')
 
 let baseDate = new ExtDate()
 let schedules
@@ -76,6 +77,62 @@ function handleClick (action) {
   updateDateElements(baseDate)
 }
 
+function updateDateElements (baseDate) {
+  const monthEl = document.getElementById('month-value')
+  const yearEl = document.getElementById('year-value')
+
+  monthEl.innerText = baseDate.get('monthName')
+  yearEl.innerText = baseDate.getFullYear()
+}
+
+function openUpdateForm () {
+  wrapper.classList.add('visible')
+}
+
+async function fullFillForm (event) {
+  const getDefunct = async () => {
+    const response = await request({
+      url: `http://localhost:8080/api/v1/defunct`,
+      headers: {
+        'x-access-token': localStorage.getItem('token')
+      }
+    })
+    return response.result.find(({ id }) => id == event.defunct)
+  }
+
+  const getUnit = async () => {
+    const response = await request({
+      url: `http://localhost:8080/api/v1/unit`,
+      headers: {
+        'x-access-token': localStorage.getItem('token')
+      }
+    })
+    return response.result.find(({ id }) => id == event.unit)
+  }
+
+  const padTo2Digits = num => (
+    num.toString().padStart(2, '0')
+  )
+
+  const formatDate = date => ([
+    date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
+  ].join('-'))
+
+  const defunct = await getDefunct()
+  const unit = await getUnit()
+
+  form.elements.id.value = event.id
+  form.elements.schedulingDate.value = formatDate(event.date)
+  form.elements.defunct.append(createOption(defunct))
+  form.elements.type.value = event.type
+  form.elements.unit.append(createOption({
+    ...unit,
+    name: unit.type + '-' + unit.location
+  }))
+}
+
 ;([
   document.getElementById('prev-month-main'),
   document.getElementById('prev-month')
@@ -110,13 +167,10 @@ document.getElementById('next-year').addEventListener('click', () => {
   })
 })
 
-function updateDateElements (baseDate) {
-  const monthEl = document.getElementById('month-value')
-  const yearEl = document.getElementById('year-value')
 
-  monthEl.innerText = baseDate.get('monthName')
-  yearEl.innerText = baseDate.getFullYear()
-}
+document.getElementById('close-btn').addEventListener('click', () => {
+  wrapper.classList.remove('visible')
+})
 
 getAllScheduling().then(results => {
   schedules = results.map(result => ({
