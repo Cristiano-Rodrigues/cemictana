@@ -7,6 +7,7 @@ import {
   UserRepository
 } from '../../repositories'
 import { adaptController, adaptMiddleware, Hasher, JWTHandler, Mailer, Validator } from './adapters'
+import { LogoutController } from '../../controllers/management/account/logout'
 
 export default router => {
   const signUpController = new SignUpController(
@@ -36,6 +37,11 @@ export default router => {
     '/login',
     adaptMiddleware(loginValidator),
     adaptController(loginController)
+  )
+
+  router.post(
+    '/logout',
+    adaptController(LogoutController)
   )
 
   return router
