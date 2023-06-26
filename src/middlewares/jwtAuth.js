@@ -1,25 +1,42 @@
-import { Unauthorized } from './errors/unauthorized'
+import { Unauthorized, Forbidden } from './errors'
 import { getToken } from '../utils/jwt'
 
-const sendError = () => ({
+const sendUnauthorized = () => ({
   code: 401,
   error: new Unauthorized()
 })
 
+const sendForbidden = () => ({
+  code: 403,
+  error: new Forbidden()
+})
+
 export class JWTAuthentication {
-  constructor (JWTHandler) {
+  constructor (JWTHandler, allowedPermissions) {
     this.jwthandler = new JWTHandler()
+    this.allowedPermissions = allowedPermissions
   }
 
   async handle (req) {
     try {
-      const decoded = this.jwthandler.verify(getToken(req))
+      const payload = this.jwthandler.verify(getToken(req))
 
-      if (!decoded) {
-        return sendError()
+      if (!payload) {
+        return sendUnauthorized()
       }
+
+      if (this.allowedPermissions.includes('*')) {
+        return {
+          success: true
+        }
+      }
+
+      if (!this.allowedPermissions.includes(payload.permission)) {
+        return sendForbidden()
+      }
+
     } catch (error) {
-      return sendError()
+      return sendUnauthorized()
     }
 
     return {
