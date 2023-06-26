@@ -24,7 +24,8 @@ export default router => {
   const updateEmployeeController = new UpdateEmployeeController(...params)
   const deleteEmployeeController = new DeleteEmployeeController(...params)
 
-  const tokenAuth = new JWTAuthentication(JWTHandler)
+  const isAdminOrEmployee = new JWTAuthentication(JWTHandler, ['admin', 'funcionário'])
+  const isAdmin = new JWTAuthentication(JWTHandler, ['admin'])
 
   const createEmployeeValidator = new Validation(Validator, createEmployeeValidation)
   const updateEmployeeValidator = new Validation(Validator, updateEmployeeValidation)
@@ -32,27 +33,27 @@ export default router => {
 
   router.post(
     '/employee',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdmin),
     adaptMiddleware(createEmployeeValidator),
     adaptController(createEmployeeController)
   )
   
   router.get(
     '/employee',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdminOrEmployee),
     adaptController(getEmployeesController)
   )
 
   router.put(
     '/employee',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdmin),
     adaptMiddleware(updateEmployeeValidator),
     adaptController(updateEmployeeController)
   )
 
   router.delete(
     '/employee/:id',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdmin),
     adaptMiddleware(deleteEmployeeValidator),
     adaptController(deleteEmployeeController)
   )

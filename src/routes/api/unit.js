@@ -25,7 +25,9 @@ export default router => {
   const updateUnitController = new UpdateUnitController(...params)
   const deleteUnitController = new DeleteUnitController(...params)
 
-  const tokenAuth = new JWTAuthentication(JWTHandler)
+  const isAuth = new JWTAuthentication(JWTHandler, ['admin', 'funcionário', 'padrão'])
+  const isAdminOrEmployee = new JWTAuthentication(JWTHandler, ['admin', 'funcionário'])
+  const isAdmin = new JWTAuthentication(JWTHandler, ['admin'])
 
   const createUnitValidator = new Validation(Validator, createUnitValidation)
   const updateUnitValidator = new Validation(Validator, updateUnitValidation)
@@ -33,27 +35,27 @@ export default router => {
 
   router.post(
     '/unit',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdminOrEmployee),
     adaptMiddleware(createUnitValidator),
     adaptController(createUnitController)
   )
 
   router.get(
     '/unit',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptController(getUnitsController)
   )
 
   router.put(
     '/unit',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdminOrEmployee),
     adaptMiddleware(updateUnitValidator),
     adaptController(updateUnitController)
   )
 
   router.delete(
     '/unit/:id',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdmin),
     adaptMiddleware(deleteUnitValidator),
     adaptController(deleteUnitController)
   )

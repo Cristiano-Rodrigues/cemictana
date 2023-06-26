@@ -16,19 +16,20 @@ export default router => {
   const getResponsiblesController = new GetResponsiblesController(...params)
   const updateResponsibleController = new UpdateResponsibleController(...params)
 
-  const tokenAuth = new JWTAuthentication(JWTHandler)
+  const isAuth = new JWTAuthentication(JWTHandler, ['admin', 'funcionário', 'padrão'])
+  const isAdminOrEmployee = new JWTAuthentication(JWTHandler, ['admin', 'funcionário'])
 
   const updateResponsibleValidator = new Validation(Validator, updateResponsibleValidation)
 
   router.get(
     '/responsible',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptController(getResponsiblesController)
   )
 
   router.put(
     '/responsible',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdminOrEmployee),
     adaptMiddleware(updateResponsibleValidator),
     adaptController(updateResponsibleController)
   )

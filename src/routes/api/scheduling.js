@@ -34,7 +34,7 @@ export default router => {
   const updateSchedulingController = new UpdateSchedulingController(...params)
   const deleteSchedulingController = new DeleteSchedulingController(...params)
 
-  const tokenAuth = new JWTAuthentication(JWTHandler)
+  const isAuth = new JWTAuthentication(JWTHandler, ['admin', 'funcionário', 'padrão'])
 
   const createSchedulingValidator = new Validation(Validator, createSchedulingValidation)
   const updateSchedulingValidator = new Validation(Validator, updateSchedulingValidation)
@@ -42,27 +42,27 @@ export default router => {
 
   router.post(
     '/scheduling',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptMiddleware(createSchedulingValidator),
     adaptController(createSchedulingController)
   )
 
   router.get(
     '/scheduling',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptController(getSchedulingsController)
   )
 
   router.put(
     '/scheduling',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptMiddleware(updateSchedulingValidator),
     adaptController(updateSchedulingController)
   )
 
   router.delete(
     '/scheduling/:id',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptMiddleware(deleteSchedulingValidator),
     adaptController(deleteSchedulingController)
   )

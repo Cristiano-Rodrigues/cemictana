@@ -31,7 +31,9 @@ export default router => {
   const updateDefunctController = new UpdateDefunctController(...params)
   const deleteDefunctController = new DeleteDefunctController(...params)
 
-  const tokenAuth = new JWTAuthentication(JWTHandler)
+  const isAuth = new JWTAuthentication(JWTHandler, ['admin', 'funcionário', 'padrão'])
+  const isAdminOrEmployee = new JWTAuthentication(JWTHandler, ['admin', 'funcionário'])
+  const isAdmin = new JWTAuthentication(JWTHandler, ['admin'])
 
   const createDefunctValidator = new Validation(Validator, createDefunctValidation)
   const searchDefunctNameValidator = new Validation(Validator, searchDefunctNameValidation)
@@ -40,20 +42,20 @@ export default router => {
 
   router.post(
     '/defunct',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptMiddleware(createDefunctValidator),
     adaptController(createDefunctController)
   )
 
   router.get(
     '/defunct',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptController(getDefunctsController)
   )
 
   router.get(
     '/defunct/responsible',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAuth),
     adaptController(getDefunctsByUserController)
   )
 
@@ -65,14 +67,14 @@ export default router => {
 
   router.put(
     '/defunct',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdminOrEmployee),
     adaptMiddleware(updateDefunctValidator),
     adaptController(updateDefunctController)
   )
 
   router.delete(
     '/defunct/:id',
-    adaptMiddleware(tokenAuth),
+    adaptMiddleware(isAdmin),
     adaptMiddleware(deleteDefunctValidator),
     adaptController(deleteDefunctController)
   )
