@@ -15,13 +15,13 @@
   width: 100%;
 }
 
-.nav-links {
+.main .topbar .nav {
   display: flex;
   gap: 10px;
   margin-right: 20px;
 }
 
-.nav-links .option {
+.main .topbar .nav .option {
   font-size: 9pt;
   color: white;
   font-weight: bold;

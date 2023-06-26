@@ -26,6 +26,7 @@
 
 .main .topbar .user-data {
   position: relative;
+  cursor: pointer;
 }
 
 .main .topbar .user-data img {
@@ -35,13 +36,15 @@
 
 .main .topbar .user-data .hidden-box {
   position: absolute;
-  bottom: -100%;
+  top: 100%;
   right: 0;
   width: 175px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 3px 3px #33333380;
   display: none;
+  overflow: hidden;
+  z-index: 2;
 }
 
 .main .topbar .user-data .hidden-box.visible {
@@ -51,10 +54,16 @@
 .main .topbar .user-data .hidden-box .nav-links {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .main .topbar .user-data .hidden-box .nav-links .option {
+  padding: 10px;
+  color: #333333;
+  border-bottom: 1px solid lightgray;
   box-shadow: none;
   cursor: pointer;
+}
+
+.main .topbar .user-data .hidden-box .nav-links .option:hover {
+  background-color: lightgray;
 }

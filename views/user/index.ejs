@@ -13,7 +13,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Principal</title>
   <style>
-    .nav-links .option:nth-child(1) {
+    .nav .option:nth-child(1) {
       text-decoration: underline;
     }
   </style>
@@ -25,13 +25,29 @@
         <div class="logo">
           <img src="/images/logo.png">
         </div>
-        <div class="nav-links">
+        <div class="nav">
           <a href="./" class="option">Principal</a>
           <a href="./defunct" class="option">Defuntos</a>
         </div>
         <input type="text" placeholder="Pesquise">
         <div class="user-data">
           <img src="/images/profile-pq.png" alt="">
+          <div class="hidden-box">
+            <div class="nav-links">
+              <a href="#" class="option">
+                <i class='bx bx-user-circle'></i>
+                Perfil
+              </a>
+              <a href="#" class="option">
+                <i class='bx bx-help-circle'></i>
+                Ajuda
+              </a>
+              <a href="../login" class="option">
+                <i class='bx bx-log-in-circle'></i>
+                Sair
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="report-wrapper"></div>
@@ -93,6 +109,7 @@
       </form>
     </div>
   </main>
+  <script src="/scripts/animations/topbar.js"></script>
   <script src="/scripts/animations/alert.js"></script>
   <script src="/scripts/services/error-messages.js"></script>
   <script src="/scripts/services/request.js"></script>
