@@ -4,6 +4,11 @@ export class LogoutController {
     if (req.session && req.session.destroy) {
       req.session.destroy()
     }
+
+    return {
+      code: 200,
+      success: true
+    }
   }
 
 }

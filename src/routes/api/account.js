@@ -41,7 +41,7 @@ export default router => {
 
   router.post(
     '/logout',
-    adaptController(LogoutController)
+    adaptController(new LogoutController())
   )
 
   return router
