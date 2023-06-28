@@ -122,10 +122,15 @@
   border-top: 1px solid lightgray;
 }
 
-.form-wrapper .form .footer .save {
+.form-wrapper .form .footer .save,
+.form-wrapper .form .footer .delete {
   padding: 10px 20px;
   color: white;
   border-radius: 5px;
   background-color: var(--secondary75);
   cursor: pointer;
+}
+
+.form-wrapper .form .footer .delete {
+  background-color: red;
 }
