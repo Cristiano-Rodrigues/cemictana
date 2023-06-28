@@ -14,7 +14,7 @@ getAllDefuncts().then(results => {
   fillDataTable (table, (results || []).map(result => ({
     nome: result.name,
     identificacao: result.identification,
-    'Data de Nascimento': result.bornDate,
+    'Data de Nascimento': result.bornDate.replace('T', ' ').replace(':00.000Z', ''),
     Endereco: result.address
   })))
 })

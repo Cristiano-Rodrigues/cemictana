@@ -13,6 +13,6 @@ async function getAllScheduling () {
 getAllScheduling().then(results => {
   fillDataTable (table, (results || []).map(result => ({
     tipo: result.type,
-    data: result.schedulingDate,
+    data: result.schedulingDate.replace('T', ' ').replace(':00.000Z', ''),
   })))
 })
