@@ -1,4 +1,4 @@
-import { InvalidEntry , ServerError } from '../../errors/'
+import { InvalidEntry , InvalidTiming, ServerError } from '../../errors/'
 import { CreateSchedulingController } from './createScheduling'
 
 const ConnectionStub = class {
@@ -26,7 +26,7 @@ const createSchedulingController = new CreateSchedulingController(
 
 const tomorrow = () => {
   const d = new Date()
-  const datestring = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() + 1}`
+  const datestring = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() + 1} 06:00:00`
   return datestring
 }
 
@@ -35,7 +35,7 @@ describe('CreateSchedulingController', () => {
     const result = await createSchedulingController.handle({
       body: {
         type: null,
-        schedulingDate: '2023-04-06',
+        schedulingDate: '2023-04-06 06:00:00',
         defunct: 1,
         unit: 1
       }
@@ -48,7 +48,7 @@ describe('CreateSchedulingController', () => {
     const result = await createSchedulingController.handle({
       body: {
         type: 'any_type',
-        schedulingDate: '2023-04-06',
+        schedulingDate: '2023-04-06 06:00:00',
         defunct: 1,
         unit: 1
       }
@@ -56,6 +56,24 @@ describe('CreateSchedulingController', () => {
     expect(result).toEqual({
       code: 400,
       error: new InvalidEntry('schedulingDate')
+    })
+  })
+
+  test('Should return an error object if given schedulingDate is out office hours', async () => {
+    const date = new Date(tomorrow())
+    date.setHours(2)
+
+    const result = await createSchedulingController.handle({
+      body: {
+        type: 'any_type',
+        schedulingDate: date.toString(),
+        defunct: 1,
+        unit: 1
+      }
+    })
+    expect(result).toEqual({
+      code: 400,
+      error: new InvalidTiming()
     })
   })
 

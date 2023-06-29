@@ -1,4 +1,4 @@
-import { InvalidEntry, ServerError } from '../../errors/'
+import { InvalidEntry, InvalidTiming, ServerError } from '../../errors/'
 
 export class CreateSchedulingController {
   constructor (
@@ -35,6 +35,21 @@ export class CreateSchedulingController {
       return {
         code: 400,
         error: new InvalidEntry('schedulingDate')
+      }
+    }
+
+    const officeHours = {
+      start: 6,
+      end: 10
+    }
+
+    if (
+      date.getHours() < officeHours.start ||
+      date.getHours() > officeHours.end
+    ) {
+      return {
+        code: 400,
+        error: new InvalidTiming()
       }
     }
 
