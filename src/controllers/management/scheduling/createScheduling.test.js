@@ -1,10 +1,13 @@
-import { InvalidEntry , InvalidTiming, ServerError } from '../../errors/'
+import { InvalidEntry , SchedulingLimit, InvalidTiming, ServerError } from '../../errors/'
 import { CreateSchedulingController } from './createScheduling'
 
 const ConnectionStub = class {
   close () {}
 }
 const SchedulingRepositoryStub = class {
+  async get () {
+    return []
+  }
   async create () {}
 }
 const DefunctRepositoryStub = class {
@@ -74,6 +77,38 @@ describe('CreateSchedulingController', () => {
     expect(result).toEqual({
       code: 400,
       error: new InvalidTiming()
+    })
+  })
+
+  test('Should return an error object if scheduling limit for some date exceeded', async () => {
+    const date = tomorrow()
+    const fakeScheduling = date => ({ schedulingDate: date })
+    const SchedulingRepositoryStub = class {
+      async get () {
+        const fakeSchedulings = []
+        for (let i = 0; i <= 10; i++) {
+          fakeSchedulings.push(fakeScheduling(date))
+        }
+        return fakeSchedulings
+      }
+    }
+    const createSchedulingController = new CreateSchedulingController(
+      ConnectionStub,
+      SchedulingRepositoryStub,
+      DefunctRepositoryStub,
+      UnitRepositoryStub
+    )
+    const result = await createSchedulingController.handle({
+      body: {
+        type: 'any_type',
+        schedulingDate: date,
+        defunct: 1,
+        unit: 1
+      }
+    })
+    expect(result).toEqual({
+      code: 400,
+      error: new SchedulingLimit()
     })
   })
 
