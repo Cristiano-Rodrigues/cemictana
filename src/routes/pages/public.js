@@ -4,6 +4,7 @@ const routes = [
   '/',
   '/login',
   '/signup',
+  '/about',
   '/admin/login',
 ]
 

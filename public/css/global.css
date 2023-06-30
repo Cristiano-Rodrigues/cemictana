@@ -84,6 +84,20 @@ p, .highlight {
   width: 170px;
 }
 
+.menu .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.menu .nav-links .option {
+  font-size: 9pt;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 /* Utils */
 .hidden {
   opacity: 0;

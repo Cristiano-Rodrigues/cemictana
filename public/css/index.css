@@ -1,26 +1,9 @@
-/* Topbar */
-.nav-links {
-  display: flex;
-  gap: 10px;
-  margin-right: 20px;
-}
-
-.nav-links .option {
-  font-size: 9pt;
-  color: #333;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 /* Banner */
 .banner {
   height: 290px;
   color: white;
   padding: 80px 110px;
   background-color: var(--secondary75);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 93% top;
 }
 
 .banner h1 {

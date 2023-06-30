@@ -17,19 +17,19 @@
         <a href="/app/">
           <img src="/images/logo.png" alt="logo" class="logo">
         </a>
-        <% if (user) { %>
-          <% if (user.permission == 'admin') { %>
-            <div class="nav-links">
+        <div class="nav-links">
+          <a href="/app" class="option">Início</a>
+          <a href="/app/about" class="option">Sobre nós</a>
+          <% if (user) { %>
+            <% if (user.permission == 'admin') { %>
               <a href="/app/admin/" class="option">Ir ao Painel Principal</a>
-            </div>
-          <% } else { %>
-            <div class="nav-links">
+            <% } else { %>
               <a href="/app/user/" class="option">Ir ao Painel Principal</a>
-            </div>
+            <% } %>
+          <% } else { %>
+            <a href="/app/login" class="secondary">Entrar</a>
           <% } %>
-        <% } else { %>
-          <a href="./login" class="secondary">Entrar</a>
-        <% } %>
+        </div>
       </div>
       <div class="banner">
         <h1 class="title">

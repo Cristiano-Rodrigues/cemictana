@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/about.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Sobre nós</title>
+</head>
+
+<body>
+  <main>
+    <div class="menu">
+      <a href="/app/">
+        <img src="/images/logo.png" alt="logo" class="logo">
+      </a>
+      <div class="nav-links">
+        <a href="/app" class="option">Início</a>
+        <a href="/app/about" class="option">Sobre nós</a>
+        <% if (user) { %>
+          <% if (user.permission == 'admin') { %>
+            <a href="/app/admin/" class="option">Ir ao Painel Principal</a>
+          <% } else { %>
+            <a href="/app/user/" class="option">Ir ao Painel Principal</a>
+          <% } %>
+        <% } else { %>
+          <a href="/app/login" class="secondary">Entrar</a>
+        <% } %>
+      </div>
+    </div>
+    <div class="main">
+      <div class="banner">
+        <h1>Sobre nós</h1>
+      </div>
+      <div class="whoWeAre">
+        <h2>Quem somos</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque praesentium, voluptates quae libero modi
+          iste ipsa
+        </p>
+        <div class="twoColumnsSection">
+          <div class="section">
+            <div class="image"></div>
+          </div>
+          <div class="section">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque praesentium, voluptates quae libero modi
+              iste ipsa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque praesentium, voluptates quae libero modi
+              iste ipsa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque praesentium, voluptates quae libero modi
+            </p>
+            <a href="./signup" class="primary">Crie uma conta</a>
+          </div>
+        </div>
+        <div class="whyChooseUs">
+          <h2>Porque nos escolher</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque praesentium, voluptates quae libero modi
+            iste ipsa
+          </p>
+          <div class="cards">
+            <div class="card">
+              <div class="icon">
+                <i class='bx bxs-star'></i>
+              </div>
+              <div class="title">
+                <h3>Title 1</h3>
+              </div>
+              <p class="text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id possimus tempore 
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <i class='bx bxs-star'></i>
+              </div>
+              <div class="title">
+                <h3>Title 1</h3>
+              </div>
+              <p class="text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id possimus tempore 
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <i class='bx bxs-star'></i>
+              </div>
+              <div class="title">
+                <h3>Title 1</h3>
+              </div>
+              <p class="text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id possimus tempore 
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <i class='bx bxs-star'></i>
+              </div>
+              <div class="title">
+                <h3>Title 1</h3>
+              </div>
+              <p class="text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit id possimus tempore 
+              </p>
+            </div>
+          </div>
+          <!-- <a href="./signup" class="primary">Crie uma conta</a> -->
+        </div>
+      </div>
+      <div class="ourServices">
+        <h2>Nossos Serviços</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="icon">
+              <img src="/images/graveyard.png" alt="cemetery icon">
+            </div>
+            <div class="desc">
+              Sepultamento
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon">
+              <img src="/images/graveyard.png" alt="cemetery icon">
+            </div>
+            <div class="desc">
+              Exumação
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon">
+              <img src="/images/graveyard.png" alt="cemetery icon">
+            </div>
+            <div class="desc">
+              Translado
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contactUs">
+        <h2>Contacte-nos</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque praesentium, voluptates quae libero modi
+          iste ipsa
+        </p>
+        <div class="socialMedia">
+          <a href="https://www.facebook.com" class="smIcon">
+            <i class='bx bxl-facebook'></i>
+          </a>
+          <a href="https://www.linkedin.com" class="smIcon">
+            <i class='bx bxl-linkedin' ></i>
+          </a>
+          <a href="https://www.twitter.com" class="smIcon">
+            <i class='bx bxl-twitter' ></i>
+          </a>
+        </div>
+        <p class="copyright">
+          Copyright &copy; Cemictana 2023. Todos os direitos reservados
+        </p>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
