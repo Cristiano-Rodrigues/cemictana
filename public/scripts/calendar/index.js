@@ -114,11 +114,18 @@ async function fullFillForm (event) {
     num.toString().padStart(2, '0')
   )
 
-  const formatDate = date => ([
-    date.getFullYear(),
-    padTo2Digits(date.getMonth() + 1),
-    padTo2Digits(date.getDate()),
-  ].join('-'))
+  const formatDate = date => {
+    return [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-').concat([
+      ' ',
+      padTo2Digits(date.getHours()),
+      ':',
+      padTo2Digits(date.getMinutes())
+    ].join(''))
+  }
 
   const defunct = await getDefunct()
   const unit = await getUnit()
