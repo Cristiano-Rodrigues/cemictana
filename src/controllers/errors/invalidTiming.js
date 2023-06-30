@@ -1,1 +1,6 @@
-export class InvalidTiming extends Error {}
+export class InvalidTiming extends Error {
+  constructor () {
+    super()
+    this.name = 'InvalidTiming'
+  }
+}
