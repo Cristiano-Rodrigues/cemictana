@@ -183,7 +183,7 @@ getAllScheduling().then(results => {
   schedules = results.map(result => ({
     ...result,
     date: new ExtDate(result.schedulingDate)
-  }))
+  })).filter(result => result.deleted == 0)
   setup(baseDate)
   updateDateElements(baseDate)
 })
