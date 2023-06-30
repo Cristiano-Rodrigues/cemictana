@@ -1,4 +1,5 @@
-import { InvalidEntry, InvalidTiming, ServerError } from '../../errors/'
+import { InvalidEntry, InvalidTiming, SchedulingLimit, ServerError } from '../../errors/'
+import { sameDay } from '../../helpers/'
 
 export class CreateSchedulingController {
   constructor (
@@ -63,6 +64,19 @@ export class CreateSchedulingController {
         await defunctRepository.getById(defunct) &&
         await unitRepository.getById(unit)
       )
+
+      const allSchedules = await schedulingRepository.get()
+      const match = allSchedules.filter(s => {
+        return sameDay(new Date(s.schedulingDate), date)
+      })
+      
+      const schedulingLimitPerDay = 10
+      if (match.length > schedulingLimitPerDay) {
+        return {
+          code: 400,
+          error: new SchedulingLimit()
+        }
+      }
 
       if ( !exist ) {
         return {
