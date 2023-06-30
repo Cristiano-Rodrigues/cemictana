@@ -14,5 +14,14 @@ getAllScheduling().then(results => {
   fillDataTable (table, (results || []).map(result => ({
     tipo: result.type,
     data: result.schedulingDate.replace('T', ' ').replace(':00.000Z', ''),
+    estado: findState(result)
   })))
 })
+
+function findState ({ state, deleted }) {
+  const response = ['Em análise', 'Reprovado', 'Aprovado', 'Reprovado']
+  let pos = 0
+  if (state == 1) pos += 2
+  if (deleted == 1) pos += 1
+  return response[pos]
+}
