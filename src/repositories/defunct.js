@@ -7,9 +7,9 @@ export class DefunctRepository {
     name, identification, responsible, bornDate, deathDate, deathCause
   }) {
     const sql = {
-      query: 'INSERT INTO defunct VALUES (default, ?, ?, ?, ?, ?, ?); \
+      query: 'INSERT INTO defunct VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?); \
         \ SELECT LAST_INSERT_ID();',
-      values: [name, identification, bornDate, deathDate, deathCause, responsible]
+      values: [name, identification, bornDate, deathDate, deathCause, responsible, '', '']
     }
     await this.query(sql.query, sql.values)
   }
@@ -62,12 +62,16 @@ export class DefunctRepository {
   }
 
   async update (id, {
-    name, identification, responsible, bornDate, deathDate, deathCause
+    name, identification, responsible, bornDate, deathDate, deathCause,
+    imageUrl, identificationFileUrl
   }) {
     const sql = {
       query: 'UPDATE defunct SET name=?, identification=?, responsible=?, bornDate=?, \
-        \ deathDate=?, deathCause=? WHERE id=? LIMIT 1',
-      values: [name, identification, responsible, bornDate, deathDate, deathCause, id]
+        \ deathDate=?, deathCause=?, imageUrl=?, identificationFileUrl=? WHERE id=? LIMIT 1',
+      values: [
+        name, identification, responsible, bornDate, deathDate, deathCause,
+        imageUrl, identificationFileUrl, id
+      ]
     }
     await this.query(sql.query, sql.values)
   }
