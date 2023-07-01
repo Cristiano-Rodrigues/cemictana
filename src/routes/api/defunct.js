@@ -4,7 +4,8 @@ import {
   GetDefunctsByUserController,
   SearchDefunctNameController,
   UpdateDefunctController,
-  DeleteDefunctController
+  DeleteDefunctController,
+  UploadDocImagesController
 } from '../../controllers/management/defunct'
 import {
   createDefunctValidation,
@@ -12,9 +13,10 @@ import {
   searchDefunctNameValidation,
   updateDefunctValidation
 } from './validations/expressValidator'
-import { JWTAuthentication, Validation } from '../../middlewares'
+import { ImageUpload, JWTAuthentication, Validation } from '../../middlewares'
 import { Connection, DefunctRepository, UserRepository } from '../../repositories'
-import { adaptController, adaptMiddleware, JWTHandler, Validator } from './adapters'
+import { adaptController, adaptMiddleware, JWTHandler, Uploader, Validator } from './adapters'
+import { generateRandomCode } from '../../controllers/helpers'
 
 export default router => {
   const params = [
@@ -29,6 +31,7 @@ export default router => {
   const getDefunctsByUserController = new GetDefunctsByUserController(...params)
   const searchDefunctNameController = new SearchDefunctNameController(...params)
   const updateDefunctController = new UpdateDefunctController(...params)
+  const uploadDefunctDocImagesController = new UploadDocImagesController(...params)
   const deleteDefunctController = new DeleteDefunctController(...params)
 
   const isAuth = new JWTAuthentication(JWTHandler, ['admin', 'funcionário', 'padrão'])
@@ -39,6 +42,9 @@ export default router => {
   const searchDefunctNameValidator = new Validation(Validator, searchDefunctNameValidation)
   const updateDefunctValidator = new Validation(Validator, updateDefunctValidation)
   const deleteDefunctValidator = new Validation(Validator, deleteDefunctValidation)
+  const imageUpload = new ImageUpload(() => (
+    generateRandomCode({ min: 0, max: 1_000_000 })
+  ), Uploader)
 
   router.post(
     '/defunct',
@@ -72,6 +78,12 @@ export default router => {
     adaptController(updateDefunctController)
   )
 
+  router.put(
+    '/defunct/images',
+    // adaptMiddleware(isAuth),
+    adaptMiddleware(imageUpload),
+    adaptController(uploadDefunctDocImagesController)
+  )
   router.delete(
     '/defunct/:id',
     adaptMiddleware(isAdmin),
