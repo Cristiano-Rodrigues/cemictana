@@ -65,7 +65,7 @@ export class CreateDefunctController {
         }
       }
 
-      await defunctRepository.create({
+      const defunct = await defunctRepository.create({
         name,
         identification,
         responsible,
@@ -75,16 +75,19 @@ export class CreateDefunctController {
       })
 
       conn.close()
+
+      return {
+        code: 201,
+        success: true,
+        defunct: {
+          id: defunct.insertId
+        }
+      }
     } catch (error) {
       return {
         code: 500,
         error: new ServerError()
       }
-    }
-
-    return {
-      code: 201,
-      success: true
     }
   }
 }

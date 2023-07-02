@@ -11,7 +11,7 @@ export class DefunctRepository {
         \ SELECT LAST_INSERT_ID();',
       values: [name, identification, bornDate, deathDate, deathCause, responsible, '', '']
     }
-    await this.query(sql.query, sql.values)
+    return (await this.query(sql.query, sql.values))[0]
   }
 
   async get () {
