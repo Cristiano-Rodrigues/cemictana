@@ -129,3 +129,33 @@ main {
 .schedule-calendar .monthdays .monthday.current {
   color: #333;
 }
+
+/* form */
+.form-wrapper .form {
+  width: 1000px;
+}
+.form .body {
+  display: flex;
+}
+
+.form .body .fields {
+  width: 450px;
+  padding-right: 10px;
+}
+
+.form .body .images {
+  padding: 20px;
+  width: 550px;
+  overflow-y: auto;
+  border-left: 1px solid lightgray;
+}
+
+.form .body .images img {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid lightgray;
+}
+
+.form .body .images h4 {
+  margin-bottom: 10px;
+}

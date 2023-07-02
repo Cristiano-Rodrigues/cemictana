@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="/css/partials/sidebar.css">
   <link rel="stylesheet" href="/css/partials/topbar.css">
   <link rel="stylesheet" href="/css/partials/report.css">
-  <link rel="stylesheet" href="/css/admin/index.css">
   <link rel="stylesheet" href="/css/admin/template.css">
+  <link rel="stylesheet" href="/css/admin/index.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Dashboard</title>
 </head>
@@ -42,32 +42,40 @@
           <div class="header">
             <div class="title">
               <p class="highlight">
-                Atualizar Agendamento
+                Dados do Agendamento
               </p>
             </div>
             <button class="close bx bx-x" id="close-btn" data-relto="update-form" type="button"></button>
           </div>
           <div class="body">
-            <input name="id" readonly hidden/>
-            <div class="input-wrapper">
-              <label for="type">Tipo de agendamento</label>
-              <input type="text" name="type" id="type" readonly/>
+            <div class="fields">
+              <input name="id" readonly hidden/>
+              <div class="input-wrapper">
+                <label for="type">Tipo de agendamento</label>
+                <input type="text" name="type" id="type" readonly/>
+              </div>
+              <div class="input-wrapper">
+                <label for="employee">Funcionario Encarregado</label>
+                <select name="employee" id="employee"></select>
+              </div>
+              <div class="input-wrapper">
+                <label for="schedulingDate">Data</label>
+                <input type="datetime-local" name="schedulingDate" id="schedulingDate">
+              </div>
+              <div class="input-wrapper">
+                <label for="defunct">Defunto</label>
+                <select name="defunct" id="defunct"></select>
+              </div>
+              <div class="input-wrapper">
+                <label for="unit">Unidade</label>
+                <select name="unit" id="unit"></select>
+              </div>
             </div>
-            <div class="input-wrapper">
-              <label for="employee">Funcionario Encarregado</label>
-              <select name="employee" id="employee"></select>
-            </div>
-            <div class="input-wrapper">
-              <label for="schedulingDate">Data</label>
-              <input type="datetime-local" name="schedulingDate" id="schedulingDate">
-            </div>
-            <div class="input-wrapper">
-              <label for="defunct">Defunto</label>
-              <select name="defunct" id="defunct"></select>
-            </div>
-            <div class="input-wrapper">
-              <label for="unit">Unidade</label>
-              <select name="unit" id="unit"></select>
+            <div class="images">
+              <h4>Pedido de Sepultura</h4>
+              <img src="" alt="Defunct image" id="image">
+              <h4>Boletim de Óbito</h4>
+              <img src="" alt="Defunct document" id="document">
             </div>
           </div>
           <div class="footer">

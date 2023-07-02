@@ -1,6 +1,8 @@
 const calendar = document.getElementById('calendar')
 const monthdays = calendar.querySelector('.monthdays')
 const wrapper = document.getElementById('update-form')
+const image = document.getElementById('image')
+const documentFile = document.getElementById('document')
 
 let baseDate = new ExtDate()
 let schedules
@@ -138,6 +140,8 @@ async function fullFillForm (event) {
     ...unit,
     name: unit.type + '-' + unit.location
   }))
+  image.src = '/uploads/' + defunct.imageUrl
+  documentFile.src = '/uploads/' + defunct.identificationFileUrl
 }
 
 ;([
