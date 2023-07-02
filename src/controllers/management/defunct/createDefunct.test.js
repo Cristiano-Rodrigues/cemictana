@@ -8,7 +8,11 @@ const DefunctRepositoryStub = class {
   async getByIdentification () {
     return null
   }
-  async create () {}
+  async create (defunct) {
+    return {
+      insertId: 'any_inserted_id'
+    }
+  }
 }
 const UserRepository = class {
   async getById (id) {
@@ -155,7 +159,10 @@ describe('CreateDefunctController', () => {
     })
     expect(result).toEqual({
       code: 201,
-      success: true
+      success: true,
+      defunct: {
+        id: 'any_inserted_id'
+      }
     })
   })
 })
