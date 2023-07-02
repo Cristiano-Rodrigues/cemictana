@@ -52,13 +52,6 @@ export default router => {
     adaptController(createSchedulingController)
   )
 
-  router.post(
-    '/scheduling/approve',
-    adaptMiddleware(isAdmin),
-    adaptMiddleware(approveSchedulingValidator),
-    adaptController(approveSchedulingController)
-  )
-
   router.get(
     '/scheduling',
     adaptMiddleware(isAuth),
@@ -71,7 +64,14 @@ export default router => {
     adaptMiddleware(updateSchedulingValidator),
     adaptController(updateSchedulingController)
   )
-
+  
+  router.put(
+    '/scheduling/approve',
+    adaptMiddleware(isAdmin),
+    adaptMiddleware(approveSchedulingValidator),
+    adaptController(approveSchedulingController)
+  )
+    
   router.delete(
     '/scheduling/:id',
     adaptMiddleware(isAuth),

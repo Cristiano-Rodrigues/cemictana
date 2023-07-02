@@ -8,11 +8,14 @@ form.addEventListener('submit', async evt => {
   try {
     let message = 'Agendamento alterado'
     let response
-    if (evt.submitter.id == "delete") {
+    if (evt.submitter.id == 'delete') {
       response = await deleteScheduling(form)
       message = 'Agendamento Removido'
-    } else {
+    } else if (evt.submitter.id == 'save') {
       response = await updateScheduling(form)
+    } else {
+      response = await approveScheduling(form)
+      message = 'Agendamento aprovado'
     }
     
     if (response.code >= 300 || !response.success) {
@@ -54,6 +57,17 @@ const updateScheduling = async form => {
       defunct: form.elements.defunct.value,
       unit: form.elements.unit.value,
       employee: form.elements.employee?.value || null,
+      token
+    })
+  })
+  return response
+}
+const approveScheduling = async form => {
+  const response = await request({
+    url: 'http://localhost:8080/api/v1/scheduling/approve',
+    method: 'PUT',
+    body: JSON.stringify({
+      id: form.elements.id.value,
       token
     })
   })
