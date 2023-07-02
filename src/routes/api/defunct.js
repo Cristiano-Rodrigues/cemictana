@@ -80,7 +80,6 @@ export default router => {
 
   router.put(
     '/defunct/images',
-    // adaptMiddleware(isAuth),
     adaptMiddleware(imageUpload),
     adaptController(uploadDefunctDocImagesController)
   )
