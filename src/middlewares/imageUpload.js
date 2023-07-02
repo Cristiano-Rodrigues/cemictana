@@ -8,7 +8,7 @@ export class ImageUpload {
   }
 
   async handle (req) {
-    const location = path.join(process.cwd(), '/uploads/')
+    const location = path.join(process.cwd(), '/public/uploads/')
     const filename = originalName => {
       const name = this.uniqueIdGenerator() + '-' + originalName
       req.filenames.push(name)
