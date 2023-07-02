@@ -19,3 +19,7 @@ export const updateSchedulingValidation = [
 export const deleteSchedulingValidation = [
   param('id').notEmpty().isNumeric()
 ]
+
+export const approveSchedulingValidation = [
+  body('id').notEmpty().isNumeric()
+]

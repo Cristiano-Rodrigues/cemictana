@@ -33,7 +33,7 @@ export class ApprovedSchedulingController {
       }
 
       const newSchedule = Object.assign({}, schedule, {
-        status: 1
+        state: 1
       })
 
       await schedulingRepository.update(id, newSchedule)

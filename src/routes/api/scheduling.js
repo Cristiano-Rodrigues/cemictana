@@ -2,10 +2,12 @@ import {
   CreateSchedulingController,
   GetSchedulingsController,
   UpdateSchedulingController,
-  DeleteSchedulingController
+  DeleteSchedulingController,
+  ApprovedSchedulingController
 } from '../../controllers/management/scheduling'
 import { Validation } from '../../middlewares/validation'
 import {
+  approveSchedulingValidation,
   createSchedulingValidation,
   deleteSchedulingValidation,
   updateSchedulingValidation
@@ -33,18 +35,28 @@ export default router => {
   const getSchedulingsController = new GetSchedulingsController(...params)
   const updateSchedulingController = new UpdateSchedulingController(...params)
   const deleteSchedulingController = new DeleteSchedulingController(...params)
+  const approveSchedulingController = new ApprovedSchedulingController(...params)
 
   const isAuth = new JWTAuthentication(JWTHandler, ['admin', 'funcionário', 'padrão'])
+  const isAdmin = new JWTAuthentication(JWTHandler, ['admin'])
 
   const createSchedulingValidator = new Validation(Validator, createSchedulingValidation)
   const updateSchedulingValidator = new Validation(Validator, updateSchedulingValidation)
   const deleteSchedulingValidator = new Validation(Validator, deleteSchedulingValidation)
+  const approveSchedulingValidator = new Validation(Validator, approveSchedulingValidation)
 
   router.post(
     '/scheduling',
     adaptMiddleware(isAuth),
     adaptMiddleware(createSchedulingValidator),
     adaptController(createSchedulingController)
+  )
+
+  router.post(
+    '/scheduling/approve',
+    adaptMiddleware(isAdmin),
+    adaptMiddleware(approveSchedulingValidator),
+    adaptController(approveSchedulingController)
   )
 
   router.get(
