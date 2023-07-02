@@ -18,14 +18,14 @@ export class ImageUpload {
       ['image/jpeg', 'image/png'].includes(mimetype)
     )
 
-    const $5megabytes = 1024 * 1024 * 5
+    const $10megabytes = 1024 * 1024 * 10
     req.filenames = []
 
     const uploader = new this.Uploader({
       location,
       filename,
       fileFilter,
-      limit: $5megabytes
+      limit: $10megabytes
     })
 
     try {
