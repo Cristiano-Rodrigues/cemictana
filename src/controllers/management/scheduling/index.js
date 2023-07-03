@@ -1,5 +1,6 @@
 export * from './createScheduling'
 export * from './getSchedulings'
+export * from './getSchedulingsByUser'
 export * from './updateScheduling'
 export * from './deleteScheduling'
 export * from './approvedScheduling'

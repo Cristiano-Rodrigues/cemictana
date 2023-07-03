@@ -3,7 +3,8 @@ import {
   GetSchedulingsController,
   UpdateSchedulingController,
   DeleteSchedulingController,
-  ApprovedSchedulingController
+  ApprovedSchedulingController,
+  GetSchedulingsByUserController
 } from '../../controllers/management/scheduling'
 import { Validation } from '../../middlewares/validation'
 import {
@@ -33,6 +34,11 @@ export default router => {
   
   const createSchedulingController = new CreateSchedulingController(...params)
   const getSchedulingsController = new GetSchedulingsController(...params)
+  const getSchedulingsByUserController = new GetSchedulingsByUserController(
+    Connection,
+    SchedulingRepository,
+    JWTHandler
+  )
   const updateSchedulingController = new UpdateSchedulingController(...params)
   const deleteSchedulingController = new DeleteSchedulingController(...params)
   const approveSchedulingController = new ApprovedSchedulingController(...params)
@@ -56,6 +62,12 @@ export default router => {
     '/scheduling',
     adaptMiddleware(isAuth),
     adaptController(getSchedulingsController)
+  )
+
+  router.get(
+    '/scheduling/responsible',
+    adaptMiddleware(isAuth),
+    adaptController(getSchedulingsByUserController)
   )
 
   router.put(
