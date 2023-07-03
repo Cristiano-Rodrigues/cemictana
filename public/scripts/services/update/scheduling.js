@@ -2,7 +2,7 @@ const table = document.getElementById('table')
 
 async function getAllScheduling () {
   const response = await request({
-    url: 'http://localhost:8080/api/v1/scheduling',
+    url: 'http://localhost:8080/api/v1/scheduling/responsible',
     headers: {
       'x-access-token': localStorage.getItem('token')
     }
