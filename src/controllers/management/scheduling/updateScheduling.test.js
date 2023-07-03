@@ -5,6 +5,11 @@ const ConnectionStub = class {
   close () {}
 }
 const SchedulingRepositoryStub = class {
+  async getById (id) {
+    return {
+      id
+    }
+  }
   async update () {}
 }
 const DefunctRepositoryStub = class {
@@ -89,7 +94,35 @@ describe('UpdateSchedulingController', () => {
         id: 1,
         type: 'any_type',
         schedulingDate: tomorrow(),
-        defunct: null,
+        defunct: 'invalid_id',
+        employee: 1,
+        unit: 1
+      }
+    })
+    expect(result.code).toBe(400)
+    expect((result.error instanceof InvalidEntry)).toBe(true)
+  })
+
+  test('Should return an error object if an invalid id is given scheduling', async () => {
+    const SchedulingRepositoryStub = class {
+      getById (_) {
+        return null
+      }
+    }
+    const updateSchedulingController = new UpdateSchedulingController(
+      ConnectionStub,
+      SchedulingRepositoryStub,
+      DefunctRepositoryStub,
+      UnitRepositoryStub,
+      EmployeeRepositoryStub
+    )
+
+    const result = await updateSchedulingController.handle({
+      body: {
+        id: 'invalid_id',
+        type: 'any_type',
+        schedulingDate: tomorrow(),
+        defunct: 1,
         employee: 1,
         unit: 1
       }

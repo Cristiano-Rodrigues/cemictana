@@ -63,13 +63,24 @@ export class UpdateSchedulingController {
         }
       }
 
-      await schedulingRepository.update(id, {
+      const scheduling = schedulingRepository.getById(id)
+
+      if (!scheduling) {
+        return {
+          code: 400,
+          error: new InvalidEntry('id')
+        }
+      }
+
+      const newScheduling = Object.assign({}, scheduling, {
         type,
         schedulingDate,
         defunct,
         employee,
         unit
       })
+
+      await schedulingRepository.update(id, newScheduling)
 
       conn.close()
     } catch (error) {
