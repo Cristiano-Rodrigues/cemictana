@@ -63,7 +63,7 @@ export class UpdateSchedulingController {
         }
       }
 
-      const scheduling = schedulingRepository.getById(id)
+      const scheduling = await schedulingRepository.getById(id)
 
       if (!scheduling) {
         return {

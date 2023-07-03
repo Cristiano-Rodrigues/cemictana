@@ -11,11 +11,11 @@ form.addEventListener('submit', async evt => {
     if (evt.submitter.id == 'delete') {
       response = await deleteScheduling(form)
       message = 'Agendamento Removido'
-    } else if (evt.submitter.id == 'save') {
-      response = await updateScheduling(form)
-    } else {
+    } else if (evt.submitter.id == 'approve') {
       response = await approveScheduling(form)
       message = 'Agendamento aprovado'
+    } else {
+      response = await updateScheduling(form)
     }
     
     if (response.code >= 300 || !response.success) {
