@@ -29,6 +29,17 @@ export class SchedulingRepository {
     return (await this.query(sql.query, sql.values))[0]
   }
 
+  async getByUser (user) {
+    const sql = {
+      query: 'SELECT scheduling.* FROM scheduling \
+      \ JOIN defunct ON scheduling.defunct = defunct.id \
+      \ JOIN responsible ON defunct.responsible = responsible.user \
+      \ WHERE responsible.user = ?',
+      values: [user]
+    }
+    return await this.query(sql.query, sql.values)
+  }
+
   async update (id, {
     type, schedulingDate, defunct, employee, unit, state, deleted
   }) {
